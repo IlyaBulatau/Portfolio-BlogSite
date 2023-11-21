@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.core.validators import EmailValidator
-from django.db.models import QuerySet
-from django.core.validators import MinLengthValidator
+from django.core.validators import EmailValidator, MinLengthValidator
 from django.utils.translation import gettext_lazy as _
 
 from . import constants as cons
@@ -22,18 +20,24 @@ class User(AbstractUser):
         help_text=_("Required.")+f"{cons.USERNAME_LENGTH_MAX}"+_("characters or fewer. Letters, digits and @/./+/-/_ only."),
         validators=[UnicodeUsernameValidator(), MinLengthValidator(cons.USERNAME_LENGTH_MIN)],
         error_messages=username_error_message,
+        blank=False,
     )
     email = models.EmailField(
         unique=True,
         help_text=_("Enter a valid email address"),
         validators=[EmailValidator()],
+        blank=False,
         )
+    password = models.CharField(blank=False, max_length=128)
     avatar = models.ImageField(blank=True, upload_to=cons.UPLOAD_USERS_AVATARS,)
     created_on = models.DateTimeField(auto_now_add=True,)
     update_on = models.DateTimeField(auto_now=True,)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = [
+        "username",
+        "password"
+        ]
 
     class Meta:
         db_table = "users"

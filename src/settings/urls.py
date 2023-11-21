@@ -26,5 +26,6 @@ urlpatterns = [
     path('index/', include('apps.index.urls')),
     path('users/', include('apps.users.urls')),
 
+    path('users/oauth/', include('allauth.urls')),
     path('__debug__/', include('debug_toolbar.urls'))
 ]

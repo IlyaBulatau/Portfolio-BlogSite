@@ -12,6 +12,7 @@ psycopg2 = "^2.9.9"
 environs = "^9.5.0"
 django-debug-toolbar = "^4.2.0"
 pillow = "^10.1.0"
+django-allauth = "^0.58.2"
 
 
 [build-system]
