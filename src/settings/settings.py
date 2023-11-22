@@ -5,9 +5,11 @@ from .enums import  ModeEnum
 from django.utils.translation import gettext_lazy as _
 from environs import Env
 
-
+# home/project/src/
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Set Up environments variables
 MODE = os.getenv('MODE', ModeEnum.DEV.value)
 
 if MODE not in [ModeEnum._member_map_.get(mode).value for mode in ModeEnum._member_names_]:
@@ -18,16 +20,25 @@ ENV_FILE = '.env.' + MODE
 ENV_PATH = BASE_DIR.parent.joinpath("env").joinpath(ENV_FILE)
 
 ENV = Env()
+
 ENV.read_env(path=ENV_PATH)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Application variables
 SECRET_KEY = ENV('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV('DEBUG')
+
+ALLOWED_HOSTS = []
+
+ROOT_URLCONF = 'settings.urls'
+
+WSGI_APPLICATION = 'settings.wsgi.application'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
+
 
 # Set up debug toolbar for docker
 if DEBUG:
@@ -35,10 +46,7 @@ if DEBUG:
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
 
 
-ALLOWED_HOSTS = []
-
-
-# Application definition
+# Applications definition
 ROOT_APPS = [
     'apps.index',
     'apps.users'
@@ -63,6 +71,8 @@ INSTALLED_APPS = [
     *THIRD_PARTY_APPS,
 ]
 
+
+# Niddlewares
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,8 +87,8 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-ROOT_URLCONF = 'settings.urls'
 
+# Templates
 TEMPLATES_DIR = BASE_DIR.joinpath('templates')
 
 TEMPLATES = [
@@ -99,11 +109,29 @@ TEMPLATES = [
 ]
 
 
+# Static files
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+
+# Internalization
 LOCALE_PATHS = [
     BASE_DIR.joinpath('locale'),
 ]
 
-WSGI_APPLICATION = 'settings.wsgi.application'
+LANGUAGE_CODE = 'en'
+LANGUAGE_COOKIE_NAME = 'en'
+
+LANGUAGES = (
+    ("en", _("English")),
+    ("ru", _("Russian")),
+)
+
+USE_I18N = True
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -138,11 +166,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Backends
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# Django-allauth
 ACCOUNT_SIGNUP_REDIRECT_URL = "/index/"
 LOGIN_REDIRECT_URL = "/index/"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
@@ -156,34 +189,8 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
-LANGUAGE_COOKIE_NAME = 'en'
-
-LANGUAGES = (
-    ("en", _("English")),
-    ("ru", _("Russian")),
-)
-
+# Time zone
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
-
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'users.User'
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
