@@ -49,7 +49,8 @@ if DEBUG:
 # Applications definition
 ROOT_APPS = [
     'apps.index',
-    'apps.users'
+    'apps.users',
+    'apps.profiles',
     ]
 
 THIRD_PARTY_APPS = [

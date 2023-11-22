@@ -14,7 +14,7 @@
     <header>
         <h1>{% trans 'Your Blog' %}</h1>
         {% if user.is_authenticated %}
-        <a href="#">{% trans 'Profile' %}</a>
+        <a href="{% url 'profile_detail_view' user.slug %}">{% trans 'Profile' %}</a>
         <a href="{% url 'logout_view' %}">{% trans 'Logout' %}</a>
         {% else %}
         <a href="{% url 'signup_view' %}">{% trans 'SignUp' %}</a>

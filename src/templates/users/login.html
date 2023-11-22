@@ -3,41 +3,29 @@
 {% load socialaccount %}
 {% load i18n %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% trans 'LogIn Page' %} {% endblock %}</title>
-</head>
-<body>
+{% block title %} {% trans 'LogIn Page' %} {% endblock %}
+{% block content %}
+<div>
+    <a href="{% url 'index:index_view' %}">{% trans 'Home' %}</a>
+</div>
+<br>
 
-    {% block content %}
+<h1>{% trans 'LogIn Page' %}</h1>
+
+<form action="" method="post">
+
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">{% trans 'Log In' %}</button>
+    <br>
+    <br>
     <div>
-        <a href="{% url 'index:index_view' %}">{% trans 'Home' %}</a>
+        <a href="{% url 'signup_view' %}">{% trans 'SignUp' %}</a>
     </div>
     <br>
 
-    <h1>{% trans 'LogIn Page' %}</h1>
-
-    <form action="" method="post">
-
-        {% csrf_token %}
-        {{ form.as_div }}
-        <button type="submit">{% trans 'Log In' %}</button>
-        <br>
-        <br>
-        <div>
-            <a href="{% url 'signup_view' %}">{% trans 'SignUp' %}</a>
-        </div>
-        <br>
-    
-        <div>
-            <a href="{% provider_login_url 'github' %}">GitHub</a>
-        </div>
-    </form>
-    {% endblock %}
-
-</body>
-</html>
+    <div>
+        <a href="{% provider_login_url 'github' %}">GitHub</a>
+    </div>
+</form>
+{% endblock %}

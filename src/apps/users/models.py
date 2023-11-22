@@ -1,8 +1,10 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.validators import EmailValidator, MinLengthValidator
 from django.utils.translation import gettext_lazy as _
+from django.template.defaultfilters import slugify
 
 from . import constants as cons
 
@@ -29,6 +31,7 @@ class User(AbstractUser):
         blank=False,
         )
     password = models.CharField(blank=False, max_length=128)
+    slug = models.SlugField(max_length=cons.SLUG_LENGTH_MAX, blank=False, unique=True)
     avatar = models.ImageField(blank=True, upload_to=cons.UPLOAD_USERS_AVATARS,)
     created_on = models.DateTimeField(auto_now_add=True,)
     update_on = models.DateTimeField(auto_now=True,)
@@ -46,3 +49,8 @@ class User(AbstractUser):
 
     def __str__(self) -> str:
         return f"Username: {self.username}, Email: {self.email}"
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.username.lower())
+        super().save(*args, **kwargs)
+

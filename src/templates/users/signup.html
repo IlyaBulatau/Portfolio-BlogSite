@@ -2,39 +2,29 @@
 {% load socialaccount %}
 {% load i18n %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% trans 'SignUp Page' %} {% endblock %}</title>
-</head>
-<body>
-    {% block content %}
-    <div>
-        <a href="{% url 'index:index_view' %}">{% trans 'Home' %}</a>
-    </div>
-    <br>
+{% block title %} {% trans 'SignUp Page' %} {% endblock %}
+{% block content %}
+<div>
+    <a href="{% url 'index:index_view' %}">{% trans 'Home' %}</a>
+</div>
+<br>
 
-    <h1>{% trans 'Signin Process' %}</h1>
-    <br><br>
+<h1>{% trans 'Signin Process' %}</h1>
+<br><br>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_div }}
-        <button type="submit">{% trans 'Sign Up' %}</button>
-    </form>
-    <br>
-    <br>
-    <div>
-        <a href="{% url 'login_view' %}">{% trans 'LogIn' %}</a>
-    </div>
-    <br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">{% trans 'Sign Up' %}</button>
+</form>
+<br>
+<br>
+<div>
+    <a href="{% url 'login_view' %}">{% trans 'LogIn' %}</a>
+</div>
+<br>
 
-    <div>
-        <a href="{% provider_login_url 'github' %}">GitHub</a>
-    </div>
-    {% endblock %}
-</body>
-</html>
+<div>
+    <a href="{% provider_login_url 'github' %}">GitHub</a>
+</div>
+{% endblock %}
