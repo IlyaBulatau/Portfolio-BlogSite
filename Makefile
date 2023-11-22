@@ -32,7 +32,7 @@ set_langueage:
 	$(RUN) django-admin makemessages -l $(flag)
 
 compile_language:
-	$(RUN) django-admin compilemessages -l en
+	$(RUN) django-admin compilemessages -l $(flag)
 
 requrements_install:
 	$(RUN) poetry install

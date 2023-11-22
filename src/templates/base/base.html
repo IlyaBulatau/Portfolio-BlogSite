@@ -1,0 +1,93 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 1em;
+        }
+
+        nav {
+            background-color: #444;
+            color: #fff;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1em;
+            margin: 0 0.5em;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        .blog-post {
+            background-color: #fff;
+            padding: 1em;
+            margin-bottom: 2em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>{% trans 'Your Blog' %}</h1>
+        {% if user.is_authenticated %}
+        <a href="#">{% trans 'Profile' %}</a>
+        <a href="{% url 'logout_view' %}">{% trans 'Logout' %}</a>
+        {% else %}
+        <a href="{% url 'signup_view' %}">{% trans 'SignUp' %}</a>
+        <a href="{% url 'login_view' %}">{% trans 'LogIn' %}</a>
+        {% endif %}
+
+    </header>    
+    <nav>
+        <a href="#">{% trans 'Home' %}</a>
+        <a href="#">{% trans 'Categories' %}</a>
+        <a href="#">{% trans 'About' %}</a>
+        <a href="#">{% trans 'Contact' %}</a>
+    </nav>
+    <main>
+
+    {% block content %}
+    {% endblock %}
+    </main>
+
+    
+    <footer>
+        <p>&copy; 2023 Your Blog Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
