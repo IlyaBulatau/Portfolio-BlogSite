@@ -13,8 +13,8 @@ class Contact(models.Model):
         blank=False,
         null=False,
         )
-    github = models.URLField(blank=True, null=False, validators=[GitHubURLValidator])
-    telegram = models.URLField(blank=True, null=False, validators=[TelegramURLValidator])
-    linkedin = models.URLField(blank=True, null=False, validators=[LinkedInURLValidator])
+    github = models.URLField(blank=True, null=False, validators=[GitHubURLValidator()])
+    telegram = models.URLField(blank=True, null=False, validators=[TelegramURLValidator()])
+    linkedin = models.URLField(blank=True, null=False, validators=[LinkedInURLValidator()])
     phone = PhoneNumberField(blank=True, null=False)
 

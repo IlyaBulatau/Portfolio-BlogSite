@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from urllib.parse import urlsplit
 
 from abc import ABC
-import re
 
 
 class BaseURLValidator(ABC, URLValidator):
@@ -21,7 +20,8 @@ class BaseURLValidator(ABC, URLValidator):
         super().__call__(value)
         if self.netloc:
             parse = urlsplit(value)
-            if parse.netloc != self.netloc:
+            # if domain is invalid or path is empty
+            if (parse.netloc != self.netloc) or (parse.path.replace("/", "").strip() == ""):
                 raise ValidationError(self.message, code=self.code, params={"value": value})
 
 

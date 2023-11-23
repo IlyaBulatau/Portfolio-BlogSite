@@ -4,8 +4,13 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
+from apps.profiles.models import Contact
 from .models import User
 
+
+class Contactinline(admin.StackedInline):
+    model = Contact
+    
 
 @admin.register(User)
 class UserAdminCustom(UserAdmin):
@@ -17,6 +22,7 @@ class UserAdminCustom(UserAdmin):
     search_fields = ("username__startswith", )
     ordering = ("pk", )
     readonly_fields = ("slug", )
+    inlines = (Contactinline, )
     # add show user avatar
     
     def profile(self, obj):

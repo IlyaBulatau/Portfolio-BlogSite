@@ -86,3 +86,11 @@ ul {
 ul li {
     margin-bottom: 0.5em;
 }
+
+a {
+    margin-left: 20px;
+}
+
+.contacts {
+    text-align: center;
+}
