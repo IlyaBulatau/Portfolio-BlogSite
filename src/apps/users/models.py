@@ -32,6 +32,7 @@ class User(AbstractUser):
     password = models.CharField(blank=False, max_length=128)
     slug = models.SlugField(max_length=cons.SLUG_LENGTH_MAX, blank=False, unique=True)
     avatar = models.ImageField(blank=True, upload_to="profile/")
+    about = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True,)
     update_on = models.DateTimeField(auto_now=True,)
 

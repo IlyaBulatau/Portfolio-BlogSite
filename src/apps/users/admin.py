@@ -25,8 +25,8 @@ class UserAdminCustom(UserAdmin):
     
 
     fieldsets = (
-        (_("Register info"), {"fields": ("username", "email", "password", )}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "slug", "avatar")}),
+        (_("Register info"), {"fields": ("username", "email", "password")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "slug", "about", "avatar")}),
         (
             _("Permissions"),
             {
@@ -40,4 +40,20 @@ class UserAdminCustom(UserAdmin):
             },
         ),
         (_("Dates"), {"fields": ("last_login", "date_joined")}),
+    )
+
+    add_fieldsets = (
+        (
+            _("Requirement"),
+            {
+                "classes": ("wide",),
+                "fields": ("username", "email", "password1", "password2"),
+            }
+        ),
+        (
+            _("Additionaly"),
+            {
+                "fields": ("first_name", "last_name", "about", "avatar", "is_staff", "user_permissions")
+            }
+        ),
     )

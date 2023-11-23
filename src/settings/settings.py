@@ -59,6 +59,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    "phonenumber_field",
     ]
 
 INSTALLED_APPS = [
