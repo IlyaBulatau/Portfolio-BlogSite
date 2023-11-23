@@ -101,6 +101,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
@@ -111,11 +112,14 @@ TEMPLATES = [
 
 
 # Static files
-STATIC_URL = "/static/"
+STATIC_URL = "static/static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static/static"
 ]
+
+MEDIA_ROOT = BASE_DIR.as_posix() + "/static/media/"
+MEDIA_URL = MEDIA_ROOT
 
 
 # Internalization

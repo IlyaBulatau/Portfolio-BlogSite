@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.validators import EmailValidator, MinLengthValidator
@@ -32,7 +31,7 @@ class User(AbstractUser):
         )
     password = models.CharField(blank=False, max_length=128)
     slug = models.SlugField(max_length=cons.SLUG_LENGTH_MAX, blank=False, unique=True)
-    avatar = models.ImageField(blank=True, upload_to=cons.UPLOAD_USERS_AVATARS,)
+    avatar = models.ImageField(blank=True, upload_to="profile/")
     created_on = models.DateTimeField(auto_now_add=True,)
     update_on = models.DateTimeField(auto_now=True,)
 
