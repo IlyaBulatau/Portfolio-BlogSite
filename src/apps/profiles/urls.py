@@ -4,5 +4,6 @@ from . import views
 
 
 urlpatterns = [
-    path("<slug:slug>/", views.ProfileDetailView.as_view(), name="profile_detail_view")
+    path("<slug:slug>/", views.ProfileDetailView.as_view(), name="profile_detail_view"),
+    path("<slug:slug>/update/", views.ProfileUpdateView.as_view(), name="profile_update_view"),
 ]

@@ -14,41 +14,25 @@
         {% endif %}
         <div>
             <h2>{% trans 'Username' %}: {{ user.username }} </h2>
+            <a class="update-button" href="{% url 'profile_update_view' user.slug %}">{% trans 'Update' %}</a>
             <h3>{% trans 'Blogs' %}</h3>
             <ul>
                 <li><a href="#">Blog Title 1</a></li>
                 <li><a href="#">Blog Title 2</a></li>
                 <!-- Add more blog links as needed -->
-            </ul>
-            
+            </ul>    
         </div>
-        
     </div>
     
-    {% if user.contacts %}
-    
+    {% if user.networks.all %}
     <div>
         <h4 class="contacts">{% trans 'Contacts' %}</h4>
-
-            {% if user.contacts.github %}            
-                <a href="{{ user.contacts.github }}"><img src="{% static 'images/social/github-logo.png' %}" alt="GitHub" width="40" height="40"></a>
-            {% endif %}
-            
-            {% if user.contacts.telegram %}
-                <a href="{{ user.contacts.telegram }}"><img src="{% static 'images/social/telegram-logo.png' %}" alt="Telegram" width="40" height="40"></a>
-            {% endif %}
-
-            {% if user.contacts.linkedin %}
-                <a href="{{ user.contacts.linkedin }}"><img src="{% static 'images/social/linkedin-logo.png' %}" alt="LinkedIn" width="40" height="40"></a>
-            {% endif %}
-
-            {% if user.contacts.phone %}
-                <a href="tel:{{ user.contacts.phone }}"><img src="{% static 'images/social/phone-logo.png' %}" alt="Phone" width="40" height="40"></a>
-            {% endif %}
-            
-
+            {% for network in user.networks.all %}
+            <a href="{{ network.link }}"><img src="{% static network.logo %}" alt="{{ network.name }}" width="40" height="40"></a>
+            {% endfor %}
     </div>
     {% endif %}
+
     {% if user.about %}
     <div>
         <h3>{% trans 'About Me' %}</h3>

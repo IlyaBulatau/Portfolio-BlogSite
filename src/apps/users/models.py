@@ -5,6 +5,8 @@ from django.core.validators import EmailValidator, MinLengthValidator
 from django.utils.translation import gettext_lazy as _
 from django.template.defaultfilters import slugify
 
+from phonenumber_field.modelfields import PhoneNumberField
+
 from . import constants as cons
 
 
@@ -32,6 +34,7 @@ class User(AbstractUser):
     password = models.CharField(blank=False, max_length=128)
     slug = models.SlugField(max_length=cons.SLUG_LENGTH_MAX, blank=False, unique=True)
     avatar = models.ImageField(blank=True, upload_to="profile/")
+    phone = PhoneNumberField(blank=True, null=False)
     about = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True,)
     update_on = models.DateTimeField(auto_now=True,)
@@ -53,4 +56,5 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.username.lower())
         super().save(*args, **kwargs)
+
 

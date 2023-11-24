@@ -4,34 +4,17 @@ from urllib.parse import urlsplit
 
 from abc import ABC
 
+from .enums import SocialNetWorkEnum
 
-class BaseURLValidator(ABC, URLValidator):
 
-    def __init__(self, netloc=None, schemes=None, **kwargs):
-        super().__init__(schemes=None, **kwargs)
-        self.netloc = (
-            netloc if netloc
-            else self.netloc 
-            if self.netloc
-            else None
-            )
+class SocialNetworkValidator(URLValidator):
+    DOMAINS: set = SocialNetWorkEnum.get_values()
+
 
     def __call__(self, value) -> None:
         super().__call__(value)
-        if self.netloc:
-            parse = urlsplit(value)
-            # if domain is invalid or path is empty
-            if (parse.netloc != self.netloc) or (parse.path.replace("/", "").strip() == ""):
-                raise ValidationError(self.message, code=self.code, params={"value": value})
+        parse = urlsplit(value)
+        # if domain is invalid or path is empty
+        if (parse.netloc not in self.DOMAINS) or (parse.path.replace("/", "").strip() == ""):
+            raise ValidationError(self.message, code=self.code, params={"value": value})
 
-
-class GitHubURLValidator(BaseURLValidator):
-    netloc = "github.com"
-        
-
-class TelegramURLValidator(BaseURLValidator):
-    netloc = "t.me"
-
-
-class LinkedInURLValidator(BaseURLValidator):
-    netloc = "linkedin.com"

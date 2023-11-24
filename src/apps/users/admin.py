@@ -4,13 +4,13 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from apps.profiles.models import Contact
+from apps.profiles.models import SocialNetwork
 from .models import User
 
 
-class Contactinline(admin.StackedInline):
-    model = Contact
-    
+class SocialNetworkInline(admin.StackedInline):
+    model = SocialNetwork
+    fields = ("link", )
 
 @admin.register(User)
 class UserAdminCustom(UserAdmin):
@@ -22,7 +22,7 @@ class UserAdminCustom(UserAdmin):
     search_fields = ("username__startswith", )
     ordering = ("pk", )
     readonly_fields = ("slug", )
-    inlines = (Contactinline, )
+    inlines = (SocialNetworkInline, )
     # add show user avatar
     
     def profile(self, obj):
@@ -32,7 +32,7 @@ class UserAdminCustom(UserAdmin):
 
     fieldsets = (
         (_("Register info"), {"fields": ("username", "email", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "slug", "about", "avatar")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "slug", "phone", "about", "avatar")}),
         (
             _("Permissions"),
             {
