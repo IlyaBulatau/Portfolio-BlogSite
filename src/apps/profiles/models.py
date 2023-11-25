@@ -22,7 +22,7 @@ class SocialNetwork(models.Model):
     link = models.URLField(blank=True, null=False, unique=True, validators=[SocialNetworkValidator()])
     logo = models.ImageField()
     is_active = models.BooleanField(default=True, null=False, blank=False)
-    contact = models.ForeignKey(User, related_name="networks", on_delete=models.PROTECT)
+    user = models.ForeignKey(User, related_name="networks", on_delete=models.PROTECT)
 
     class Meta:
         db_table = "social_networks"
@@ -41,3 +41,6 @@ class SocialNetwork(models.Model):
     def clean(self, flag=False) -> None:
         if flag:
             raise ValidationError("Link is incorrect")
+
+    def __str__(self):
+        return self.name

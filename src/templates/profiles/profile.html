@@ -28,7 +28,9 @@
     <div>
         <h4 class="contacts">{% trans 'Contacts' %}</h4>
             {% for network in user.networks.all %}
+            {% if network.is_active %}
             <a href="{{ network.link }}"><img src="{% static network.logo %}" alt="{{ network.name }}" width="40" height="40"></a>
+            {% endif %}
             {% endfor %}
     </div>
     {% endif %}

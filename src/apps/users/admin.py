@@ -10,7 +10,7 @@ from .models import User
 
 class SocialNetworkInline(admin.StackedInline):
     model = SocialNetwork
-    fields = ("link", )
+    fields = ("link", "is_active")
 
 @admin.register(User)
 class UserAdminCustom(UserAdmin):

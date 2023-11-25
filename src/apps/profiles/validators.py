@@ -17,4 +17,3 @@ class SocialNetworkValidator(URLValidator):
         # if domain is invalid or path is empty
         if (parse.netloc not in self.DOMAINS) or (parse.path.replace("/", "").strip() == ""):
             raise ValidationError(self.message, code=self.code, params={"value": value})
-
