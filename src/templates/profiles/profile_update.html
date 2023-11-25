@@ -12,7 +12,7 @@
     {{ form.as_div }}
     {{ newtorks_form.as_div }}
     <button type="submit">Submit</button>
-    <button type="submit">Cancel</button>
+    <a href="{% url 'profile_detail_view' user.slug %}" class="cancel">Cancel</a>
 
 </form>
 
