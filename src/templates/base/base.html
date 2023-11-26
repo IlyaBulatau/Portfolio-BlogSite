@@ -12,6 +12,7 @@
 <body>
     
     <header>
+        <button class="dark-mode-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
         <h1>{% trans 'Your Blog' %}</h1>
         {% if user.is_authenticated %}
         <a href="{% url 'profiles:profile_detail_view' user.slug %}">{% trans 'Profile' %}</a>
@@ -28,15 +29,23 @@
         <a href="#">{% trans 'About' %}</a>
         <a href="#">{% trans 'Contact' %}</a>
     </nav>
+
     <main>
 
     {% block content %}
     {% endblock %}
+
     </main>
 
     
     <footer>
         <p>&copy; 2023 Your Blog Name. All rights reserved.</p>
     </footer>
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+</script>
+
 </body>
 </html>

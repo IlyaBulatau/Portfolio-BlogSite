@@ -6,7 +6,7 @@
 {% block title %} {% trans 'LogIn Page' %} {% endblock %}
 {% block content %}
 <div>
-    <a href="{% url 'index:index_view' %}">{% trans 'Home' %}</a>
+    <a href="{% url 'core:index_view' %}">{% trans 'Home' %}</a>
 </div>
 <br>
 
@@ -20,7 +20,7 @@
     <br>
     <br>
     <div>
-        <a href="{% url 'signup_view' %}">{% trans 'SignUp' %}</a>
+        <a href="{% url 'users:signup_view' %}">{% trans 'SignUp' %}</a>
     </div>
     <br>
 

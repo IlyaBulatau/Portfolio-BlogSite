@@ -183,8 +183,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # Django-allauth
-ACCOUNT_SIGNUP_REDIRECT_URL = "/index/"
-LOGIN_REDIRECT_URL = "/index/"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 

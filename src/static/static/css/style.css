@@ -1,15 +1,40 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.5s, color 0.5s;
+    display: flex;
+    flex-direction: column;
 }
 
+.dark-mode-button {
+    position: fixed;
+    top: 3px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 0.5em 1em;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
+/**/
 header {
     background-color: #333;
     color: #fff;
     padding: 1em;
     text-align: center;
+    width: 100%;
 }
 
 header a {
@@ -17,39 +42,90 @@ header a {
     text-decoration: none;
     margin-left: 1em;
 }
+/**/
 
+
+/**/
 nav {
     background-color: #444;
     color: #fff;
     padding: 0.5em;
     text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
-
 nav a {
     color: #fff;
     text-decoration: none;
     padding: 1em;
     margin: 0 0.5em;
+    transition: color 0.3s;
 }
 
+nav a:hover {
+    color: #ffd700;
+}
+/**/
+
+
+/**/
 main {
+    max-width: 800px;
+    justify-content: space-between;
+    margin: 2em auto;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 4em auto;
     padding: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    display: flexbox;
 }
+/**/
 
+
+/**/
 .blog-post {
     background-color: #fff;
-    padding: 1em;
+    padding: 1.5em;
     margin-bottom: 2em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    flex-grow: 2;
 }
 
+.blog-post:hover {
+    transform: scale(1.02);
+}
+
+.blog-post h2 {
+    color: #333;
+}
+
+.blog-post p {
+    margin-bottom: 1em;
+}
+
+.blog-post span {
+    font-style: italic;
+    color: #777;
+}
+/**/
+
+
+/**/
 footer {
     background-color: #333;
     color: #fff;
     padding: 1em;
     text-align: center;
 }
+/**/
 
+
+/**/
 .profile {
     max-width: 800px;
     margin: 2em auto;
@@ -72,7 +148,10 @@ footer {
     margin-bottom: 40px;
     margin-right: 250px;
 }
+/**/
 
+
+/**/
 h2, h3 {
     color: #333;
 }
@@ -98,6 +177,8 @@ a {
     text-align: center;
 }
 
+
+/**/
 .update-button {
     position: absolute;
     top: 10px;
@@ -109,6 +190,15 @@ a {
     cursor: pointer;
     text-decoration: none;
 }
+
+button {
+    background-color: #333;
+    color: #fff;
+    padding: 0.5em 1em;
+    border: none;
+    cursor: pointer;
+}
+
 
 .form_update {
     max-width: 600px;
@@ -129,13 +219,6 @@ input, textarea {
     margin-bottom: 1em;
 }
 
-button {
-    background-color: #333;
-    color: #fff;
-    padding: 0.5em 1em;
-    border: none;
-    cursor: pointer;
-}
 
 .cancel {
     background-color: #f66666;
@@ -144,4 +227,18 @@ button {
     border: none;
     cursor: pointer;
     text-decoration: none;
+}
+
+
+
+.tags {
+    margin-top: 1em;
+}
+
+.tags span {
+    background-color: #ddd;
+    padding: 0.1em 0.4em;
+    margin-right: 0.5em;
+    border-radius: 5px;
+    display: inline-block;
 }
