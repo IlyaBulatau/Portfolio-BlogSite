@@ -26,7 +26,7 @@ class UserAdminCustom(UserAdmin):
     # add show user avatar
     
     def profile(self, obj):
-        link = reverse("profile_detail_view", args=(obj.slug, ))
+        link = reverse("profiles:profile_detail_view", args=(obj.slug, ))
         return format_html(f"<a href='{link}'>link</a>")
     
 
