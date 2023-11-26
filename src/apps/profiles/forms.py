@@ -51,6 +51,7 @@ class SocialNetworkUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         obj = kwargs.get("instance")
+        print(self.data)
         self.fields["link"].label = obj.name
         self.fields["link"].widget.attrs["name"] = "link"
         self.fields["link"].validators.append(SocialNetworkValidator())

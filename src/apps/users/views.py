@@ -10,16 +10,16 @@ class UserSingUpView(CreateView):
     model = User
     template_name = "users/signup.html"
     form_class = forms.UserSignUpForm
-    success_url = reverse_lazy("login_view")
+    success_url = reverse_lazy("users:login_view")
     
 
 class UserLogInView(LoginView):
     template_name = "users/login.html"
     authentication_form = forms.UserLogInForm
     redirect_authenticated_user = True
-    next_page = reverse_lazy("index:index_view")
+    next_page = reverse_lazy("core:index_view")
 
 
 class UserLogoutView(LogoutView):
     template_name = "users/logout.html"
-    next_page = reverse_lazy("login_view")
+    next_page = reverse_lazy("users:login_view")

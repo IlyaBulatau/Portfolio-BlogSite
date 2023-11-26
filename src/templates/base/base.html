@@ -14,16 +14,16 @@
     <header>
         <h1>{% trans 'Your Blog' %}</h1>
         {% if user.is_authenticated %}
-        <a href="{% url 'profile_detail_view' user.slug %}">{% trans 'Profile' %}</a>
-        <a href="{% url 'logout_view' %}">{% trans 'Logout' %}</a>
+        <a href="{% url 'profiles:profile_detail_view' user.slug %}">{% trans 'Profile' %}</a>
+        <a href="{% url 'users:logout_view' %}">{% trans 'Logout' %}</a>
         {% else %}
-        <a href="{% url 'signup_view' %}">{% trans 'SignUp' %}</a>
-        <a href="{% url 'login_view' %}">{% trans 'LogIn' %}</a>
+        <a href="{% url 'users:signup_view' %}">{% trans 'SignUp' %}</a>
+        <a href="{% url 'users:login_view' %}">{% trans 'LogIn' %}</a>
         {% endif %}
 
     </header>    
     <nav>
-        <a href="{% url 'index:index_view' %}">{% trans 'Home' %}</a>
+        <a href="{% url 'core:index_view' %}">{% trans 'Home' %}</a>
         <a href="#">{% trans 'Categories' %}</a>
         <a href="#">{% trans 'About' %}</a>
         <a href="#">{% trans 'Contact' %}</a>

@@ -32,7 +32,7 @@ class User(AbstractUser):
         blank=False,
         )
     password = models.CharField(blank=False, max_length=128)
-    slug = models.SlugField(max_length=cons.SLUG_LENGTH_MAX, blank=False, unique=True)
+    slug = models.SlugField(max_length=cons.SLUG_LENGTH_MAX, blank=False, unique=True, db_index=True)
     avatar = models.ImageField(blank=True, upload_to="profile/")
     phone = PhoneNumberField(blank=True, null=False)
     about = models.TextField(blank=True)
