@@ -51,7 +51,7 @@ class User(AbstractUser):
         verbose_name_plural = "users"
 
     def __str__(self) -> str:
-        return f"Username: {self.username}, Email: {self.email}"
+        return f"{self.pk} | {self.username}"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.username.lower())

@@ -1,6 +1,10 @@
 from django.views import generic
-from django.contrib.auth.models import User
+
+from apps.posts.models import Post
 
 
-class HealthcheckView(generic.TemplateView):
-    template_name = "index/index.html"
+class HomePageView(generic.ListView):
+    model = Post
+    template_name = "core/index.html"
+    paginate_by = 5
+    context_object_name = "posts"

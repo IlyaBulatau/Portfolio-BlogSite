@@ -1,5 +1,9 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
+from django.utils.translation import gettext_lazy as _
+from django.template.defaultfilters import slugify
+
+from datetime import datetime
 
 from apps.users.models import User
 from . import constants as cons
@@ -31,6 +35,8 @@ class Tag(models.Model):
     """
     Tag of posts
     """
+    SLUG_PREFIX = "tag-"
+
     name = models.CharField(choices=TAGS_CHOISE, unique=True)
     description = models.CharField(max_length=cons.TAG_LENGTH_MAX, blank=True, null=False)
     slug = models.SlugField(unique=True, db_index=True)
@@ -44,6 +50,9 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.SLUG_PREFIX+self.name)
+        super().save(*args, **kwargs)
 
 class Post(models.Model):
     """
@@ -104,7 +113,11 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post ID: {self.pk}, Author: {self.author.pk}, Tag: {self.tag.name}"
-
+    
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title.split()[0]+"-"+datetime.now().strftime("%Y%m%d%H%M%S"))
+        super().save(*args, **kwargs)
 
 class Comment(models.Model):
     """
