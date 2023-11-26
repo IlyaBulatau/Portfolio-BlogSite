@@ -33,6 +33,7 @@ urlpatterns = [
 
     path('users/oauth/', include('allauth.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

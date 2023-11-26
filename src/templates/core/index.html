@@ -18,7 +18,7 @@
         <img src="{{ post.image.url }}" alt="Post Image">
         {% endif %}
         
-        <p>{{ post.content }}</p>
+        <p>{{ post.content|safe }}</p>
     </div>
     {% endfor %}
     

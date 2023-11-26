@@ -9,24 +9,6 @@ body {
     flex-direction: column;
 }
 
-.dark-mode-button {
-    position: fixed;
-    top: 3px;
-    right: 20px;
-    background-color: #333;
-    color: #fff;
-    padding: 0.5em 1em;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-body.dark-mode {
-    background-color: #333;
-    color: #fff;
-}
-
-
 
 /**/
 header {

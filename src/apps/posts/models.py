@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from django.utils.translation import gettext_lazy as _
 from django.template.defaultfilters import slugify
+from ckeditor.fields import RichTextField 
 
 from datetime import datetime
 
@@ -65,7 +66,7 @@ class Post(models.Model):
         max_length=cons.TITLE_LENGTH_MAX,
         validators=[MinLengthValidator(cons.TITLE_LENGTH_MIN)],
         )
-    content = models.TextField(
+    content = RichTextField(
         blank=False,
         null=False,
         validators=[MinLengthValidator(cons.CONTENT_LENGTH_MIN)],
