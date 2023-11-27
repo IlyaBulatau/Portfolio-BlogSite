@@ -118,7 +118,8 @@ class Post(models.Model):
     
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title.split()[0]+"-"+datetime.now().strftime("%Y%m%d%H%M%S"))
+        title = self. title
+        self.slug = slugify(title.split()[0]+"-"+self.author.username+"-"+title.split()[-1])
         super().save(*args, **kwargs)
 
 class Comment(models.Model):

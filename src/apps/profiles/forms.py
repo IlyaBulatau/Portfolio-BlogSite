@@ -35,7 +35,6 @@ class UserUpdateForm(forms.ModelForm):
             )
     
     def __init__(self, *args, **kwargs):
-        obj = kwargs.get("instance")
         super().__init__(*args, **kwargs)
         self.fields["email"].widget.attrs['readonly'] = True
 

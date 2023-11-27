@@ -6,6 +6,7 @@
 {% block content %}
 
 <article>
+    <a class="update-button-post" href="{% url 'posts:post_update_view' post.slug %}">{% trans 'Update' %}</a>
     <div class="post-header">
         <div>
             <h2 class="post-title">{{ post.title }}</h2>
@@ -15,7 +16,9 @@
             </div>
         </div>
     </div>
+    {% if post.image %}
     <img src="{{ post.image.url }}" alt="Post Image" class="post-image">
+    {% endif %}
     <div class="post-content">
         <p>{{ post.content|safe }}</p>
     </div>

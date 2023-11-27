@@ -1,12 +1,15 @@
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
+from django.urls import reverse_lazy
 
 from .models import Post, IPView
+from .forms import PostUpdateForm
 
 
 class PostDetailView(generic.DetailView):
     model = Post
     context_object_name = "post"
+    template_name = "posts/post_detail.html"
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         client_ip_adress: str = self._get_client_ip_address(request)
@@ -29,7 +32,13 @@ class PostDetailView(generic.DetailView):
 
 class PostUpdateView(generic.UpdateView):
     model = Post
+    context_object_name = "post"
+    form_class = PostUpdateForm
+    template_name = "posts/post_update.html"
 
+    def get_success_url(self) -> str:
+        post: Post = self.get_object()
+        return reverse_lazy("posts:post_detail_view", args=(post.slug, ))
 
 class PostDeleteView(generic.DeleteView):
     ...

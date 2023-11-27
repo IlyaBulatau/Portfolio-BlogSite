@@ -179,6 +179,18 @@ a {
     text-decoration: none;
 }
 
+.update-button-post {
+    top: -25px;
+    text-align: right;
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    padding: 0.2em 0.4em;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 button {
     background-color: #333;
     color: #fff;
