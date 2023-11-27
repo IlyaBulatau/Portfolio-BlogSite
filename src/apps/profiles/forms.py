@@ -1,3 +1,4 @@
+from typing import Any
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.forms.models import inlineformset_factory
@@ -35,8 +36,11 @@ class UserUpdateForm(forms.ModelForm):
             )
     
     def __init__(self, *args, **kwargs):
+        obj = kwargs.get("instance")
         super().__init__(*args, **kwargs)
         self.fields["email"].widget.attrs['readonly'] = True
+        self.fields["new_network"] = forms.CharField(validators=[SocialNetworkValidator()], required=False)
+
 
 
 class SocialNetworkUpdateForm(forms.ModelForm):

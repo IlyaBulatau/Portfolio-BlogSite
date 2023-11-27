@@ -8,5 +8,5 @@ class SocialNetWorkEnum(Enum):
 
     @classmethod
     def get_values(cls) -> set:
-        values = [cls._member_map_.get(values).value for values in cls._member_names_]
+        values = [item.value for item in cls]
         return set(values)

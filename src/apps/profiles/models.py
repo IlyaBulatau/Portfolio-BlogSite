@@ -18,13 +18,14 @@ class SocialNetwork(models.Model):
     }
 
     name = models.CharField()
-    link = models.URLField(blank=True, null=False, unique=True, validators=[SocialNetworkValidator()])
+    link = models.URLField(blank=True, null=False, validators=[SocialNetworkValidator()])
     logo = models.ImageField()
     is_active = models.BooleanField(default=True, null=False, blank=False)
     user = models.ForeignKey(User, related_name="networks", on_delete=models.PROTECT)
 
     class Meta:
         db_table = "social_networks"
+        unique_together = ("name", "user")
 
 
     def save(self, *args, **kwargs):

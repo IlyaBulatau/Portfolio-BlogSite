@@ -1,10 +1,10 @@
-from django.forms.models import BaseModelForm
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from django.views.generic import DetailView, UpdateView
 from django.urls import reverse_lazy
 
 from .forms import UserUpdateForm, UserSocialNetworkFormSet
 from apps.users.models import User
+from .models import SocialNetwork
 
 
 class ProfileDetailView(DetailView):
@@ -35,6 +35,11 @@ class ProfileUpdateView(UpdateView):
                                         self.request.FILES,
                                         instance=user,
                                         )
+        form = self.get_form()
+        new_network = form.data.get("new_network")
+        if new_network:
+            SocialNetwork.objects.filter(link=new_network, user=user).get_or_create(link=new_network, user=user)
+
         return context
 
 
