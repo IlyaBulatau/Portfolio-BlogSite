@@ -190,6 +190,16 @@ button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
+.line-above-content {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 3px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
 label {
     display: block;
     margin-bottom: 0.5em;
@@ -212,7 +222,7 @@ input, textarea {
 }
 
 
-
+/**/
 .tags {
     margin-top: 1em;
 }
@@ -225,3 +235,31 @@ input, textarea {
     display: inline-block;
 }
 
+
+/**/
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.pagination-btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1em;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.pagination-btn:hover {
+    background-color: #45a049;
+}
+
+.current-page {
+    font-size: 1.2em;
+    margin: 0 1em;
+}
+/**/
