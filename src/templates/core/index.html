@@ -6,13 +6,14 @@
 
     {% for post in posts %}
     <div class="blog-post">
-        <h2>{{ post.title }}</h2>
+        <a style="text-decoration: none;" href="{% url 'posts:post_detail_view' post.slug %}">
+            <h2>{{ post.title }}</h2>
+        </a>
         <div class="tags">
             <span>{{ post.tag.name }}</span>
         </div>
-        <p>{% trans 'Views' %} {{ post.views_set.all | length }}</p>
+        <p>{% trans 'Views' %} {{ post.views.all|length }}</p>
         <p>{% trans 'Published on' %}: <span>{{ post.created_on|date }}</span></p>
-        <p>{% trans 'Author' %}: {{ post.author.username  }}</p>
         
         {% if post.image %}
         <img src="{{ post.image.url }}" alt="Post Image" width="500">
@@ -25,15 +26,15 @@
 
     <div class="pagination">
         {% if page_obj.has_previous %}
-        <a href="/?page=1" class="pagination-btn">First</a>
-        <a href="/?page={{ page_obj.previous_page_number }}]" class="pagination-btn">← Previous</a>
+        <a href="/?page=1" class="pagination-btn">{% trans 'First' %}</a>
+        <a href="/?page={{ page_obj.previous_page_number }}]" class="pagination-btn">← {% trans 'Previous' %}</a>
         {% endif %}
 
         <div class="current-page">{% trans 'Page' %} <span id="currentPage">{{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span></div>
 
         {% if page_obj.has_next %}
-        <a href="/?page={{ page_obj.next_page_number }}" class="pagination-btn">Next →</a>
-        <a href="/?page={{ page.paginator.num_pages }}" class="pagination-btn">Last</a>
+        <a href="/?page={{ page_obj.next_page_number }}" class="pagination-btn">{% trans 'Next' %} →</a>
+        <a href="/?page={{ page_obj.paginator.num_pages }}" class="pagination-btn">{% trans 'Last' %}</a>
         {% endif %}
     </div>
 {% endblock %}

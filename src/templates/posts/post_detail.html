@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block title %} Post {% endblock  %}
+
+{% block content %}
+
+<article>
+    <div class="post-header">
+        <div>
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="post-metadata">
+                <span>{% trans 'Author' %}: <a href="{% url 'profiles:profile_detail_view' post.author.slug %}" class="author-link">{{ post.author.username }}</a></span>
+                <span>{% trans 'Views' %}: {{ post.views.all|length }}</span>
+            </div>
+        </div>
+    </div>
+    <img src="{{ post.image.url }}" alt="Post Image" class="post-image">
+    <div class="post-content">
+        <p>{{ post.content|safe }}</p>
+    </div>
+</article>
+{% endblock %}

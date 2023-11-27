@@ -6,5 +6,5 @@ from . import views
 app_name = "posts"
 
 urlpatterns = [
-    path("", views.healthchek),
+    path("<slug:slug>/", views.PostDetailView.as_view(), name="post_detail_view"),
 ]
