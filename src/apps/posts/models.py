@@ -81,6 +81,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to="posts/", blank=True, null=False)
     created_on = models.DateTimeField(auto_now_add=True)
     update_on = models.DateTimeField(auto_now=True)
+    is_show = models.BooleanField(default=True, null=False, blank=False)
 
     tag = models.ForeignKey(
         Tag,

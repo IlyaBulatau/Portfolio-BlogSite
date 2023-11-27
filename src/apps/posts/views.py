@@ -14,8 +14,7 @@ class PostDetailView(generic.DetailView):
         ipview_obj: IPView = IPView.objects.get_or_create(address=client_ip_adress)[0]
         post_obj: Post = self.get_object()
 
-        print(ipview_obj.posts.add(post_obj))
-        # post_obj.views.get_or_create(address=client_ip_adress)
+        ipview_obj.posts.add(post_obj)
         
         return super().get(request, *args, **kwargs)
 
@@ -29,7 +28,7 @@ class PostDetailView(generic.DetailView):
         return ip_adress
 
 class PostUpdateView(generic.UpdateView):
-    ...
+    model = Post
 
 
 class PostDeleteView(generic.DeleteView):
