@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-22 10:18+0000\n"
+"POT-Creation-Date: 2023-11-28 11:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,101 +19,194 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/apps/users/forms.py:10
+#: src/apps/posts/admin.py:32
+msgid "Tag"
+msgstr "Тег"
+
+#: src/apps/profiles/forms.py:16 src/apps/users/forms.py:10
+#: src/templates/profiles/profile.html:16
 msgid "Username"
 msgstr "Имя пользователя"
+
+#: src/apps/profiles/forms.py:22
+msgid "Phone"
+msgstr "Телефон"
+
+#: src/apps/users/admin.py:34
+msgid "Register info"
+msgstr "Данные для процесса регистрации"
+
+#: src/apps/users/admin.py:35
+msgid "Personal info"
+msgstr "Персональные данные"
+
+#: src/apps/users/admin.py:37
+msgid "Permissions"
+msgstr "Разрешения"
+
+#: src/apps/users/admin.py:48
+msgid "Dates"
+msgstr "Данные"
+
+#: src/apps/users/admin.py:53
+#, fuzzy
+#| msgid "Required."
+msgid "Requirement"
+msgstr "Обязательно"
+
+#: src/apps/users/admin.py:60
+msgid "Additionaly"
+msgstr "Дополнительно"
 
 #: src/apps/users/forms.py:11
 msgid "Email"
 msgstr "Email"
 
-#: src/apps/users/models.py:13
+#: src/apps/users/models.py:16
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем уже существует"
 
-#: src/apps/users/models.py:14
+#: src/apps/users/models.py:17
 msgid "There is no user with this username"
 msgstr "Нету пользователя с таким именем"
 
-#: src/apps/users/models.py:20
+#: src/apps/users/models.py:23
 msgid "Required."
 msgstr "Обязательно"
 
-#: src/apps/users/models.py:20
+#: src/apps/users/models.py:23
 msgid "characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr "символов или меньше. Только буквы, цифры и @/./+/-/_."
 
-#: src/apps/users/models.py:27
+#: src/apps/users/models.py:30
 msgid "Enter a valid email address"
 msgstr "Введите корректный email"
 
-#: src/settings/settings.py:166
+#: src/settings/settings.py:138
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
-#: src/settings/settings.py:167
+#: src/settings/settings.py:139
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
-#: src/templates/base/base.html:66
+#: src/templates/base/base.html:15
 msgid "Your Blog"
 msgstr "Ваш блог"
 
-#: src/templates/base/base.html:68
+#: src/templates/base/base.html:17 src/templates/profiles/profile.html:4
 msgid "Profile"
 msgstr "Профиль"
 
-#: src/templates/base/base.html:69
+#: src/templates/base/base.html:18
 msgid "Logout"
 msgstr "Выйти"
 
-#: src/templates/base/base.html:71 src/templates/users/login.html:32
+#: src/templates/base/base.html:20 src/templates/users/login.html:23
 #, fuzzy
 #| msgid "Sign Up"
 msgid "SignUp"
 msgstr "Зарегестрироваться"
 
-#: src/templates/base/base.html:72 src/templates/users/signup.html:31
+#: src/templates/base/base.html:21 src/templates/users/signup.html:23
 #, fuzzy
 #| msgid "LogIn Page"
 msgid "LogIn"
 msgstr "Страница Авторизации"
 
-#: src/templates/base/base.html:77 src/templates/users/login.html:18
-#: src/templates/users/signup.html:16
+#: src/templates/base/base.html:26 src/templates/users/login.html:9
+#: src/templates/users/signup.html:8
 msgid "Home"
 msgstr "На главную"
 
-#: src/templates/base/base.html:78
+#: src/templates/base/base.html:27
 msgid "Categories"
 msgstr "Категории"
 
-#: src/templates/base/base.html:79
+#: src/templates/base/base.html:28
 msgid "About"
 msgstr "О сайте"
 
-#: src/templates/base/base.html:80
+#: src/templates/base/base.html:29
 msgid "Contact"
 msgstr "Контакты"
 
-#: src/templates/users/login.html:12 src/templates/users/login.html:22
+#: src/templates/core/index.html:15 src/templates/posts/post_detail.html:15
+msgid "Views"
+msgstr "Просмотры"
+
+#: src/templates/core/index.html:16
+msgid "Published on"
+msgstr "Дата публикации"
+
+#: src/templates/core/index.html:29
+msgid "First"
+msgstr "Начало"
+
+#: src/templates/core/index.html:30
+msgid "Previous"
+msgstr "Преидущая"
+
+#: src/templates/core/index.html:33
+msgid "Page"
+msgstr "Страница"
+
+#: src/templates/core/index.html:33
+msgid "of"
+msgstr "из"
+
+#: src/templates/core/index.html:36
+msgid "Next"
+msgstr "Следующая"
+
+#: src/templates/core/index.html:37
+msgid "Last"
+msgstr "Конец"
+
+#: src/templates/posts/post_detail.html:9
+#: src/templates/profiles/profile.html:17
+#: src/templates/profiles/profile_update.html:4
+msgid "Update"
+msgstr "Обновить"
+
+#: src/templates/posts/post_detail.html:14
+msgid "Author"
+msgstr "Автор"
+
+#: src/templates/profiles/profile.html:18
+msgid "Blogs"
+msgstr ""
+
+#: src/templates/profiles/profile.html:29
+#, fuzzy
+#| msgid "Contact"
+msgid "Contacts"
+msgstr "Контакты"
+
+#: src/templates/profiles/profile.html:40
+#, fuzzy
+#| msgid "About"
+msgid "About Me"
+msgstr "О сайте"
+
+#: src/templates/users/login.html:6 src/templates/users/login.html:13
 msgid "LogIn Page"
 msgstr "Страница Авторизации"
 
-#: src/templates/users/login.html:28
+#: src/templates/users/login.html:19
 msgid "Log In"
 msgstr "Войти"
 
-#: src/templates/users/signup.html:11
+#: src/templates/users/signup.html:5
 #, fuzzy
 #| msgid "LogIn Page"
 msgid "SignUp Page"
 msgstr "Страница Авторизации"
 
-#: src/templates/users/signup.html:20
+#: src/templates/users/signup.html:12
 msgid "Signin Process"
 msgstr "Страница Регистрации"
 
-#: src/templates/users/signup.html:26
+#: src/templates/users/signup.html:18
 msgid "Sign Up"
 msgstr "Зарегестрироваться"

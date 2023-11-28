@@ -37,7 +37,7 @@ class PostUpdateView(generic.UpdateView):
     template_name = "posts/post_update.html"
 
     def get_success_url(self) -> str:
-        post: Post = self.get_object()
+        post: Post = self.object
         return reverse_lazy("posts:post_detail_view", args=(post.slug, ))
 
 class PostDeleteView(generic.DeleteView):

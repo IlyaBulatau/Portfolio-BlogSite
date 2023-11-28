@@ -19,7 +19,7 @@ class ProfileUpdateView(UpdateView):
 
 
     def get_success_url(self) -> str:
-        user_slug = self.request.user.slug
+        user_slug = self.object.slug
         return reverse_lazy("profiles:profile_detail_view", args=(user_slug, ))
 
 

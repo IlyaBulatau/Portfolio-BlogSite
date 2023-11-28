@@ -56,11 +56,15 @@ ROOT_APPS = [
 
 THIRD_PARTY_APPS = [
     'debug_toolbar',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    
     "phonenumber_field",
+    
     "ckeditor",
     "ckeditor_uploader",
     ]
@@ -186,9 +190,13 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Django-allauth
 ACCOUNT_SIGNUP_REDIRECT_URL = "/"
-LOGIN_REDIRECT_URL = "/"
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
+
+LOGIN_REDIRECT_URL = "/"
+SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
@@ -196,6 +204,15 @@ SOCIALACCOUNT_PROVIDERS = {
             'user',
         ],
     },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
 }
 
 
