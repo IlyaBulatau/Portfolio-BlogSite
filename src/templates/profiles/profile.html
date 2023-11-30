@@ -7,14 +7,14 @@
 
 <div class="profile">
     <div class="profile-header">
-        {% if user.avatar %}
-        <img src="{{ user.avatar.url }}" alt="User Profile Picture" width="180" height="180">
+        {% if user_obj.avatar %}
+        <img src="{{ user_obj.avatar.url }}" alt="User Profile Picture" width="180" height="180">
         {% else %}
         <img src="{% static 'images/empty_avatar.png' %}" alt="User Profile Picture" width="180" height="180">
         {% endif %}
         <div>
-            <h2>{% trans 'Username' %}: {{ user.username }} </h2>
-            <a class="update-button" href="{% url 'profiles:profile_update_view' user.slug %}">{% trans 'Update' %}</a>
+            <h2>{% trans 'Username' %}: {{ user_obj.username }} </h2>
+            <a class="update-button" href="{% url 'profiles:profile_update_view' user_obj.slug %}">{% trans 'Update' %}</a>
             <h3>{% trans 'Blogs' %}</h3>
             <ul>
                 <li><a href="#">Blog Title 1</a></li>
@@ -24,10 +24,10 @@
         </div>
     </div>
     
-    {% if user.networks.all %}
+    {% if user_obj.networks.all %}
     <div>
         <h4 class="contacts">{% trans 'Contacts' %}</h4>
-            {% for network in user.networks.all %}
+            {% for network in user_obj.networks.all %}
             {% if network.is_active %}
             <a href="{{ network.link }}"><img src="{% static network.logo %}" alt="{{ network.name }}" width="40" height="40"></a>
             {% endif %}
@@ -35,10 +35,10 @@
     </div>
     {% endif %}
 
-    {% if user.about %}
+    {% if user_obj.about %}
     <div>
         <h3>{% trans 'About Me' %}</h3>
-        <p>{{ user.about }}</p>
+        <p>{{ user_obj.about }}</p>
       
     </div>
     {% endif %}
