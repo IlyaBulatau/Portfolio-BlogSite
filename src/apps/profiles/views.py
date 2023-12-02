@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserUpdateForm, UserSocialNetworkFormSet
 from apps.users.models import User
 from .models import SocialNetwork
+from apps.users.mixins import UpdatePermissionMixin
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
@@ -14,7 +15,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "user_obj"
 
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdatePermissionMixin, UpdateView):
     model = User
     template_name = "profiles/profile_update.html"
     form_class = UserUpdateForm

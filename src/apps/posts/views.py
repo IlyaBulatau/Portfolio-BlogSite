@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Post, IPView
 from .forms import PostUpdateForm
+from apps.users.mixins import UpdatePermissionMixin
 
 
 class PostDetailView(generic.DetailView):
@@ -32,7 +33,7 @@ class PostDetailView(generic.DetailView):
             ip_adress = request.META.get('REMOTE_ADDR')
         return ip_adress
 
-class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdatePermissionMixin, generic.UpdateView):
     model = Post
     context_object_name = "post"
     form_class = PostUpdateForm
