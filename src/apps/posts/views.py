@@ -2,11 +2,36 @@ from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import QuerySet
 
 
 from .models import Post, IPView
 from .forms import PostUpdateForm
 from apps.users.mixins import UpdatePermissionMixin
+
+
+class PostCreateView(generic.CreateView):
+    ...
+
+
+class PostUserListView(generic.ListView):
+    model = Post
+    template_name = "core/index.html"
+    paginate_by = 5
+    context_object_name = "posts"
+    ordering = ["-created_on"]
+
+    def get_queryset(self) -> QuerySet:
+        if self.request.method == "GET":
+            user_slug: str = self.kwargs.get("slug")
+            queryset: QuerySet = self.model.objects.filter(author__slug=user_slug).all()
+
+            # if user is not current
+            if self.request.user.slug != user_slug:
+                queryset: QuerySet = queryset.filter(is_show=True)
+        
+        return queryset
+
 
 
 class PostDetailView(generic.DetailView):

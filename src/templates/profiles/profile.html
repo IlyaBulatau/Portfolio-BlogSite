@@ -20,7 +20,7 @@
             <div>
                 <h3>{% trans 'Acticles' %}: {{ user_obj.posts.all|length }}</h3>
                 {% if user_obj.posts.all %}
-                <span><a href="#" class="user_posts_view">View</a></span>
+                <span><a href="{% url 'posts:post_user_view' user_obj.slug %}" class="user_posts_view">View</a></span>
                 {% endif %}
             </div>
         </div>

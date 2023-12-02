@@ -7,6 +7,7 @@
 
 <article>
     {% if post.author.slug == user.slug %}
+    <a class="update-button-post" href="{% url 'posts:post_update_view' post.slug %}">{% trans 'Update' %}</a>
     {% endif %}
     <div class="post-header">
         <div>

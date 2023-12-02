@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -6,10 +6,13 @@ from . import views
 app_name = "profiles"
 
 urlpatterns = [
-    path("<slug:slug>/", views.ProfileDetailView.as_view(), name="profile_detail_view"),
     path(
-        "<slug:slug>/update/",
-        views.ProfileUpdateView.as_view(),
-        name="profile_update_view",
-    ),
+        "<slug:slug>/", include(
+            [
+                path("", views.ProfileDetailView.as_view(), name="profile_detail_view"),
+                path("update/", views.ProfileUpdateView.as_view(), name="profile_update_view")
+                ]
+            )
+        ),
+    
 ]
