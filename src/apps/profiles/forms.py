@@ -11,13 +11,12 @@ from .validators import SocialNetworkValidator
 
 
 class UserUpdateForm(forms.ModelForm):
-   
     username = forms.CharField(
         label=_("Username"),
         max_length=USERNAME_LENGTH_MAX,
         min_length=USERNAME_LENGTH_MIN,
         required=True,
-        )
+    )
     phone = PhoneNumberField(
         label=_("Phone"),
         required=False,
@@ -33,18 +32,18 @@ class UserUpdateForm(forms.ModelForm):
             "phone",
             "avatar",
             "about",
-            )
-    
+        )
+
     def __init__(self, *args, **kwargs):
         obj = kwargs.get("instance")
         super().__init__(*args, **kwargs)
-        self.fields["email"].widget.attrs['readonly'] = True
-        self.fields["new_network"] = forms.CharField(validators=[SocialNetworkValidator()], required=False)
-
+        self.fields["email"].widget.attrs["readonly"] = True
+        self.fields["new_network"] = forms.CharField(
+            validators=[SocialNetworkValidator()], required=False
+        )
 
 
 class SocialNetworkUpdateForm(forms.ModelForm):
-
     class Meta:
         model = SocialNetwork
         fields = (
@@ -61,8 +60,8 @@ class SocialNetworkUpdateForm(forms.ModelForm):
 
 
 UserSocialNetworkFormSet = inlineformset_factory(
-            User, 
-            SocialNetwork,
-            extra=0,
-            form=SocialNetworkUpdateForm,
-    )
+    User,
+    SocialNetwork,
+    extra=0,
+    form=SocialNetworkUpdateForm,
+)

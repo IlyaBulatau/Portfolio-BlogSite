@@ -335,3 +335,15 @@ article {
     margin: 0 1em;
 }
 /**/
+
+.user_posts_view {
+    text-decoration: none;
+    color: rgb(82, 70, 70);
+    transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    cursor: pointer;
+}
+
+.user_posts_view:hover {
+    color: rgb(198, 187, 29);
+    font-size: 17px;
+}

@@ -15,7 +15,9 @@ class SocialNetworkValidator(URLValidator):
         parse = urlsplit(value)
         self.message = self._generate_message()
         # if domain is invalid or path is empty
-        if (parse.netloc not in self.DOMAINS) or (parse.path.replace("/", "").strip() == ""):
+        if (parse.netloc not in self.DOMAINS) or (
+            parse.path.replace("/", "").strip() == ""
+        ):
             raise ValidationError(self.message, code=self.code, params={"value": value})
 
     def _generate_message(self):

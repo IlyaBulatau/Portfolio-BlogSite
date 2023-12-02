@@ -5,20 +5,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('profiles', '0004_alter_socialnetwork_link'),
+        ("profiles", "0004_alter_socialnetwork_link"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='socialnetwork',
-            old_name='contact',
-            new_name='user',
+            model_name="socialnetwork",
+            old_name="contact",
+            new_name="user",
         ),
         migrations.AlterField(
-            model_name='socialnetwork',
-            name='link',
-            field=models.URLField(blank=True, unique=True, validators=[apps.profiles.validators.SocialNetworkValidator()]),
+            model_name="socialnetwork",
+            name="link",
+            field=models.URLField(
+                blank=True,
+                unique=True,
+                validators=[apps.profiles.validators.SocialNetworkValidator()],
+            ),
         ),
     ]

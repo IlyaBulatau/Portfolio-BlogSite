@@ -13,7 +13,7 @@ class UserSingUpView(CreateView):
     template_name = "users/signup.html"
     form_class = forms.UserSignUpForm
     success_url = reverse_lazy("users:login_view")
-    
+
 
 class UserLogInView(LoginView):
     template_name = "users/login.html"

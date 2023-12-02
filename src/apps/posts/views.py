@@ -21,17 +21,17 @@ class PostDetailView(generic.DetailView):
         post_obj: Post = self.get_object()
 
         ipview_obj.posts.add(post_obj)
-        
+
         return super().get(request, *args, **kwargs)
 
-
     def _get_client_ip_address(self, request: HttpRequest) -> str:
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
         if x_forwarded_for:
-            ip_adress = x_forwarded_for.split(',')[-1].strip()
+            ip_adress = x_forwarded_for.split(",")[-1].strip()
         else:
-            ip_adress = request.META.get('REMOTE_ADDR')
+            ip_adress = request.META.get("REMOTE_ADDR")
         return ip_adress
+
 
 class PostUpdateView(LoginRequiredMixin, UpdatePermissionMixin, generic.UpdateView):
     model = Post
@@ -41,8 +41,8 @@ class PostUpdateView(LoginRequiredMixin, UpdatePermissionMixin, generic.UpdateVi
 
     def get_success_url(self) -> str:
         post: Post = self.object
-        return reverse_lazy("posts:post_detail_view", args=(post.slug, ))
+        return reverse_lazy("posts:post_detail_view", args=(post.slug,))
+
 
 class PostDeleteView(generic.DeleteView):
     ...
-

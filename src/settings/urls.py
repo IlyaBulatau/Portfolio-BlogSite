@@ -15,27 +15,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include 
+from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 
-admin_site = [path(f'{site.name}/', site.urls) for site in admin.sites.all_sites]
+admin_site = [path(f"{site.name}/", site.urls) for site in admin.sites.all_sites]
 
 urlpatterns = [
     *admin_site,
+    path("", include("apps.core.urls")),
 
-    path('', include('apps.core.urls')),
-    path('users/', include('apps.users.urls')),
-    path('profiles/', include('apps.profiles.urls')),
-    path('posts/', include('apps.posts.urls')),
-
-    path('users/oauth/', include('allauth.urls')),
-    path('__debug__/', include('debug_toolbar.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("users/", include("apps.users.urls")),
+    path("profiles/", include("apps.profiles.urls")),
+    path("posts/", include("apps.posts.urls")),
+    
+    path("users/oauth/", include("allauth.urls")),
+    path("__debug__/", include("debug_toolbar.urls")),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    

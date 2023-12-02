@@ -6,15 +6,22 @@ from django.utils.html import format_html
 from .models import Post, Tag, IPView
 
 
-
 @admin.register(Post)
 class PostAdminCustom(admin.ModelAdmin):
     readonly_fields = ("slug", "views")
-    list_display = ("pk", "slug", "user", "created_on", )
-    list_display_links = ("pk", "slug", )
+    list_display = (
+        "pk",
+        "slug",
+        "user",
+        "created_on",
+    )
+    list_display_links = (
+        "pk",
+        "slug",
+    )
     list_filter = ("author", "created_on")
     search_fields = ("pk", "title__startswith")
-    ordering = ("-pk", )
+    ordering = ("-pk",)
 
     def user(self, obj):
         link = reverse("admin:users_user_change", args=[obj.author.pk])
@@ -23,18 +30,22 @@ class PostAdminCustom(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdminCustom(admin.ModelAdmin):
-    list_display = ("name", "slug", )
-    readonly_fields = ("slug", )
-    search_fields = ("name__startswith", )
+    list_display = (
+        "name",
+        "slug",
+    )
+    readonly_fields = ("slug",)
+    search_fields = ("name__startswith",)
 
     add_fieldsets = (
         (
             _("Tag"),
             {
                 "classes": ("wide",),
-                "fields": ("name", "description", ),
-            }
+                "fields": (
+                    "name",
+                    "description",
+                ),
+            },
         ),
     )
-
-

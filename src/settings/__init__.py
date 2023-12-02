@@ -14,3 +14,4 @@
 
 # TODO: write comment and like system
 
+# TODO: add favorites posts and subscriptions

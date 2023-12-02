@@ -17,12 +17,12 @@
             {% if user_obj.slug == user.slug %}
             <a class="update-button" href="{% url 'profiles:profile_update_view' user_obj.slug %}">{% trans 'Update' %}</a>
             {% endif %}
-            <h3>{% trans 'Blogs' %}</h3>
-            <ul>
-                <li><a href="#">Blog Title 1</a></li>
-                <li><a href="#">Blog Title 2</a></li>
-                <!-- Add more blog links as needed -->
-            </ul>    
+            <div>
+                <h3>{% trans 'Acticles' %}: {{ user_obj.posts.all|length }}</h3>
+                {% if user_obj.posts.all %}
+                <span><a href="#" class="user_posts_view">View</a></span>
+                {% endif %}
+            </div>
         </div>
     </div>
     

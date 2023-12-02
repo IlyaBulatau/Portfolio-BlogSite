@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<form method="post" class="form_update">
+<form method="post" class="form_update" enctype='multipart/form-data'>
     {% csrf_token %}
 
     <h2>User Profile</h2>
