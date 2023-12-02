@@ -6,7 +6,8 @@
 {% block content %}
 
 <article>
-    <a class="update-button-post" href="{% url 'posts:post_update_view' post.slug %}">{% trans 'Update' %}</a>
+    {% if post.author.slug == user.slug %}
+    {% endif %}
     <div class="post-header">
         <div>
             <h2 class="post-title">{{ post.title }}</h2>

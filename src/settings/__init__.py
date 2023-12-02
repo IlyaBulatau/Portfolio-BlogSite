@@ -14,5 +14,3 @@
 
 # TODO: write comment and like system
 
-# TODO: add constraine to update foreing profile and post(write Mixin)
-# TODO: add login constraine

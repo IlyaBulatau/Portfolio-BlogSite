@@ -14,7 +14,9 @@
         {% endif %}
         <div>
             <h2>{% trans 'Username' %}: {{ user_obj.username }} </h2>
+            {% if user_obj.slug == user.slug %}
             <a class="update-button" href="{% url 'profiles:profile_update_view' user_obj.slug %}">{% trans 'Update' %}</a>
+            {% endif %}
             <h3>{% trans 'Blogs' %}</h3>
             <ul>
                 <li><a href="#">Blog Title 1</a></li>
