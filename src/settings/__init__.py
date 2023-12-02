@@ -4,11 +4,15 @@
 
 # TODO: write handle database erro and all 500 error
 # TODO: write templates to error page
+# TODO: add page with posts of certain tags
+# TODO: add my posts page
+# TODO: add ability create post
 
-# TODO: add auth with google(django-allauth)
+# TODO: add searched system on site
+
 # TODO: rewrite django-allauth templates to custom
 
 # TODO: write comment and like system
 
-# TODO: add constraine to update foreing profile and post
+# TODO: add constraine to update foreing profile and post(write Mixin)
 # TODO: add login constraine

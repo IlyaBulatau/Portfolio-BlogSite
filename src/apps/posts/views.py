@@ -1,6 +1,8 @@
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from .models import Post, IPView
 from .forms import PostUpdateForm
@@ -30,7 +32,7 @@ class PostDetailView(generic.DetailView):
             ip_adress = request.META.get('REMOTE_ADDR')
         return ip_adress
 
-class PostUpdateView(generic.UpdateView):
+class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Post
     context_object_name = "post"
     form_class = PostUpdateForm

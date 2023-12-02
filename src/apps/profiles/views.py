@@ -1,7 +1,7 @@
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from django.views.generic import DetailView, UpdateView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserUpdateForm, UserSocialNetworkFormSet
 from apps.users.models import User
@@ -14,12 +14,11 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "user_obj"
 
 
-class ProfileUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = "profiles/profile_update.html"
     form_class = UserUpdateForm
-    permission_required = ["users.update"]
-    
+
 
     def get_success_url(self) -> str:
         user_slug = self.object.slug
