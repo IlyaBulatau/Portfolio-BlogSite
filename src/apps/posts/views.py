@@ -1,17 +1,32 @@
-from django.http import HttpRequest, HttpResponse
+from django.forms.models import BaseModelForm
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
 
+from .models import Post, IPView, Tag
+from .forms import PostUpdateForm, PostCreateForm
+from apps.users.mixins import UpdatePermissionMixin, LoginPermissionMixin
 
-from .models import Post, IPView
-from .forms import PostUpdateForm
-from apps.users.mixins import UpdatePermissionMixin
 
+class PostCreateView(LoginPermissionMixin, generic.CreateView):
+    model = Post
+    form_class = PostCreateForm
+    template_name = "posts/post_create.html"
+    success_url = reverse_lazy("core:index_view")
+    
 
-class PostCreateView(generic.CreateView):
-    ...
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        self.object = form.save(commit=False)
+        
+        self.object.author = self.request.user
+
+        tag_choise = form.data.get("tag")
+        tag = Tag.objects.get_or_create(name=tag_choise)
+        self.object.tag = tag[0]
+
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class PostUserListView(generic.ListView):
@@ -58,7 +73,7 @@ class PostDetailView(generic.DetailView):
         return ip_adress
 
 
-class PostUpdateView(LoginRequiredMixin, UpdatePermissionMixin, generic.UpdateView):
+class PostUpdateView(LoginPermissionMixin, UpdatePermissionMixin, generic.UpdateView):
     model = Post
     context_object_name = "post"
     form_class = PostUpdateForm

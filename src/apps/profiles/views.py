@@ -1,21 +1,21 @@
 from django.http import HttpResponse
 from django.views.generic import DetailView, UpdateView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 
+from apps.users.mixins import LoginPermissionMixin
 from .forms import UserUpdateForm, UserSocialNetworkFormSet
 from apps.users.models import User
 from .models import SocialNetwork
 from apps.users.mixins import UpdatePermissionMixin
 
 
-class ProfileDetailView(LoginRequiredMixin, DetailView):
+class ProfileDetailView(LoginPermissionMixin, DetailView):
     model = User
     template_name = "profiles/profile.html"
     context_object_name = "user_obj"
 
 
-class ProfileUpdateView(LoginRequiredMixin, UpdatePermissionMixin, UpdateView):
+class ProfileUpdateView(LoginPermissionMixin, UpdatePermissionMixin, UpdateView):
     model = User
     template_name = "profiles/profile_update.html"
     form_class = UserUpdateForm
@@ -40,6 +40,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdatePermissionMixin, UpdateView):
             )
         form = self.get_form()
         new_network = form.data.get("new_network")
+        
         if new_network:
             SocialNetwork.objects.filter(link=new_network, user=user).get_or_create(
                 link=new_network, user=user

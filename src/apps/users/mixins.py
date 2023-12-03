@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import AccessMixin
+from django.contrib.auth.mixins import AccessMixin, LoginRequiredMixin
 from django.http import HttpRequest
 from django.db.models import Model, ForeignKey
 
@@ -39,7 +39,7 @@ class UpdatePermissionMixin(AccessMixin):
 
         # if obj from requet doesn't relate with User - return
         if not user_related_model:
-            return
+            return super().dispatch(request, *args, **kwargs)
 
         user_field_name = user_related_model.name
 
@@ -54,3 +54,7 @@ class UpdatePermissionMixin(AccessMixin):
             self.handle_no_permission()
 
         return super().dispatch(request, *args, **kwargs)
+
+
+class LoginPermissionMixin(LoginRequiredMixin):
+    redirect_field_name = ""
