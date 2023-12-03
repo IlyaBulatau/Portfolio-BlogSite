@@ -8,12 +8,16 @@ app_name = "posts"
 
 urlpatterns = [
     path("new/", views.PostCreateView.as_view(), name="post_create_view"),
-    path("<slug:slug>/", include(
-        [
-            path("", views.PostDetailView.as_view(), name="post_detail_view"),
-            path("update/", views.PostUpdateView.as_view(), name="post_update_view"),
+    path(
+        "<slug:slug>/",
+        include(
+            [
+                path("", views.PostDetailView.as_view(), name="post_detail_view"),
+                path(
+                    "update/", views.PostUpdateView.as_view(), name="post_update_view"
+                ),
             ]
-        )
+        ),
     ),
-    path("users/<slug:slug>/", views.PostUserListView.as_view(), name="post_user_view")
+    path("users/<slug:slug>/", views.PostUserListView.as_view(), name="post_user_view"),
 ]

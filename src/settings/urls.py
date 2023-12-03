@@ -25,12 +25,12 @@ admin_site = [path(f"{site.name}/", site.urls) for site in admin.sites.all_sites
 
 urlpatterns = [
     *admin_site,
+    
     path("", include("apps.core.urls")),
-
     path("users/", include("apps.users.urls")),
     path("profiles/", include("apps.profiles.urls")),
     path("posts/", include("apps.posts.urls")),
-    
+
     path("users/oauth/", include("allauth.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),

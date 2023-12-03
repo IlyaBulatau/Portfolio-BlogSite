@@ -10,9 +10,11 @@ from .choices import TAGS_CHOISE
 
 class PostUpdateForm(forms.ModelForm):
     content = RichTextFormField(
-        required=True, validators=[MinLengthValidator(cons.CONTENT_LENGTH_MIN)]
+        label=_("Content"),
+        required=True,
+        validators=[MinLengthValidator(cons.CONTENT_LENGTH_MIN)],
     )
-    is_show = forms.BooleanField(required=False)
+    is_show = forms.BooleanField(label=_("Show"), required=False)
 
     class Meta:
         model = Post
@@ -21,14 +23,18 @@ class PostUpdateForm(forms.ModelForm):
 
 class PostCreateForm(forms.ModelForm):
     title = forms.CharField(
+        label=_("Title"),
         required=True,
         max_length=cons.TITLE_LENGTH_MAX,
-        validators=[MinLengthValidator(cons.TITLE_LENGTH_MIN)])
+        validators=[MinLengthValidator(cons.TITLE_LENGTH_MIN)],
+    )
     content = RichTextFormField(
+        label=_("Content"),
         required=True,
-        validators=[MinLengthValidator(cons.CONTENT_LENGTH_MIN)])
-    image = forms.ImageField(required=False)
-    tag = forms.ChoiceField(choices=TAGS_CHOISE, required=True)
+        validators=[MinLengthValidator(cons.CONTENT_LENGTH_MIN)],
+    )
+    image = forms.ImageField(label=_("Image"), required=False)
+    tag = forms.ChoiceField(label=_("Tag"), choices=TAGS_CHOISE, required=True)
 
     class Meta:
         model = Post

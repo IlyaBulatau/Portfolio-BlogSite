@@ -7,6 +7,7 @@ from django.db.models import QuerySet
 from .models import Post, IPView, Tag
 from .forms import PostUpdateForm, PostCreateForm
 from apps.users.mixins import UpdatePermissionMixin, LoginPermissionMixin
+from apps.users.models import User
 
 
 class PostCreateView(LoginPermissionMixin, generic.CreateView):
@@ -14,16 +15,18 @@ class PostCreateView(LoginPermissionMixin, generic.CreateView):
     form_class = PostCreateForm
     template_name = "posts/post_create.html"
     success_url = reverse_lazy("core:index_view")
-    
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        self.object = form.save(commit=False)
-        
-        self.object.author = self.request.user
+        # get Post instance with data from form
+        self.object: Post = form.save(commit=False)
 
-        tag_choise = form.data.get("tag")
-        tag = Tag.objects.get_or_create(name=tag_choise)
-        self.object.tag = tag[0]
+        # set author for the post
+        self.object.author: User = self.request.user
+
+        # get tag name and create it if not exists
+        # set tag for the post
+        tag_choise: str = form.data.get("tag")
+        self.object.tag: Tag = Tag.objects.get_or_create(name=tag_choise)[0]
 
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
@@ -38,15 +41,18 @@ class PostUserListView(generic.ListView):
 
     def get_queryset(self) -> QuerySet:
         if self.request.method == "GET":
+            # get slug for url path
             user_slug: str = self.kwargs.get("slug")
+
+            # get all posts by the slug
             queryset: QuerySet = self.model.objects.filter(author__slug=user_slug).all()
 
             # if user is not current
+            # show only posts with is_show mark
             if self.request.user.slug != user_slug:
                 queryset: QuerySet = queryset.filter(is_show=True)
-        
-        return queryset
 
+        return queryset
 
 
 class PostDetailView(generic.DetailView):
@@ -55,11 +61,16 @@ class PostDetailView(generic.DetailView):
     template_name = "posts/post_detail.html"
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        """
+        Add counting views of post
+        """
         client_ip_adress: str = self._get_client_ip_address(request)
 
+        # add new ip address if not exists
         ipview_obj: IPView = IPView.objects.get_or_create(address=client_ip_adress)[0]
         post_obj: Post = self.get_object()
 
+        # connect posts with ip address in database
         ipview_obj.posts.add(post_obj)
 
         return super().get(request, *args, **kwargs)

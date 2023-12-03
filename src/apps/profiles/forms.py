@@ -22,7 +22,7 @@ class UserUpdateForm(forms.ModelForm):
         required=False,
     )
     email = forms.EmailField(validators=[])
-    avatar = forms.ImageField(required=False)
+    avatar = forms.ImageField(label=_("Avatar"), required=False)
 
     class Meta:
         model = User

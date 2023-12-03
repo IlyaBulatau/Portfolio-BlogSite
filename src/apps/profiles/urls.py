@@ -7,12 +7,16 @@ app_name = "profiles"
 
 urlpatterns = [
     path(
-        "<slug:slug>/", include(
+        "<slug:slug>/",
+        include(
             [
                 path("", views.ProfileDetailView.as_view(), name="profile_detail_view"),
-                path("update/", views.ProfileUpdateView.as_view(), name="profile_update_view")
-                ]
-            )
+                path(
+                    "update/",
+                    views.ProfileUpdateView.as_view(),
+                    name="profile_update_view",
+                ),
+            ]
         ),
-    
+    ),
 ]
