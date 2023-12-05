@@ -2,8 +2,13 @@ from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse_lazy
-from django.db.models import QuerySet
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank, SearchHeadline
+from django.db.models import QuerySet, Q
+from django.contrib.postgres.search import (
+    SearchVector,
+    SearchQuery,
+    SearchRank,
+    SearchHeadline,
+)
 
 from .models import Post, IPView, Tag
 from .forms import PostUpdateForm, PostCreateForm
@@ -44,14 +49,17 @@ class PostUserListView(generic.ListView):
         if self.request.method == "GET":
             # get slug for url path
             user_slug: str = self.kwargs.get("slug")
-
-            # get all posts by the slug
-            queryset: QuerySet = self.model.objects.filter(author__slug=user_slug).all()
+            current_user = self.request.user
 
             # if user is not current
             # show only posts with is_show mark
-            if self.request.user.slug != user_slug:
-                queryset: QuerySet = queryset.filter(is_show=True)
+            query_filter = (
+                Q(author__slug=user_slug, is_show=True)
+                if current_user.slug != user_slug
+                else Q(author__slug=user_slug)
+            )
+            # get all posts by the slug
+            queryset: QuerySet = self.model.objects.filter(query_filter).all()
 
         return queryset
 
@@ -110,19 +118,15 @@ class PostSearchView(generic.ListView):
         search_query = SearchQuery(query)
         search_rank = SearchRank(search_vector, search_query)
         search_headline = SearchHeadline(
-            "content",
-            search_query,
-            min_words=60,
-            max_words=61,
-            max_fragments=2)
+            "content", search_query, min_words=60, max_words=61, max_fragments=2
+        )
 
-        return Post.objects.annotate(
-            search=search_vector,
-            rank=search_rank
-            ).annotate(headline=search_headline).filter(
-                search=search_query,
-                is_show=True
-                ).order_by("-rank")
+        return (
+            Post.objects.annotate(search=search_vector, rank=search_rank)
+            .annotate(headline=search_headline)
+            .filter(search=search_query, is_show=True)
+            .order_by("-rank")
+        )
 
 
 class PostDeleteView(generic.DeleteView):

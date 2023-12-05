@@ -3,7 +3,7 @@
 # TODO: write handle database erro and all 500 error
 # TODO: write templates to error page
 
-# TODO: add searched system on site
+# TODO: autocomplete searhch text
 
 # TODO: rewrite django-allauth templates to custom
 
@@ -14,3 +14,5 @@
 # TODO: move logic from view to signals
 # TODO: wrap queries innto transactions
 # TODO: optimize sql queries
+
+# TODO: add caching
