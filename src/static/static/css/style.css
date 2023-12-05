@@ -347,3 +347,37 @@ article {
     color: rgb(198, 187, 29);
     font-size: 17px;
 }
+/**/
+
+
+/**/
+.search-panel {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: inline-block;
+}
+
+.search-input {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.search-button {
+    padding: 8px 12px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+}
+/**/

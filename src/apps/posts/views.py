@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse_lazy
 from django.db.models import QuerySet
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank, SearchHeadline
 
 from .models import Post, IPView, Tag
 from .forms import PostUpdateForm, PostCreateForm
@@ -93,6 +94,35 @@ class PostUpdateView(LoginPermissionMixin, OwnerPermissionMixin, generic.UpdateV
     def get_success_url(self) -> str:
         post: Post = self.object
         return reverse_lazy("posts:post_detail_view", args=(post.slug,))
+
+
+class PostSearchView(generic.ListView):
+    model = Post
+    template_name = "posts/post_search.html"
+    paginate_by = 5
+    context_object_name = "posts"
+    ordering = ("-created_on",)
+
+    def get_queryset(self) -> QuerySet:
+        query = self.request.GET.get("q")
+
+        search_vector = SearchVector("content", "title", "tag__name")
+        search_query = SearchQuery(query)
+        search_rank = SearchRank(search_vector, search_query)
+        search_headline = SearchHeadline(
+            "content",
+            search_query,
+            min_words=60,
+            max_words=61,
+            max_fragments=2)
+
+        return Post.objects.annotate(
+            search=search_vector,
+            rank=search_rank
+            ).annotate(headline=search_headline).filter(
+                search=search_query,
+                is_show=True
+                ).order_by("-rank")
 
 
 class PostDeleteView(generic.DeleteView):

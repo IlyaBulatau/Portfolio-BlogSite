@@ -12,3 +12,5 @@
 # TODO: add favorites posts and subscriptions
 
 # TODO: move logic from view to signals
+# TODO: wrap queries innto transactions
+# TODO: optimize sql queries

@@ -29,6 +29,13 @@
         <a href="#">{% trans 'Contact' %}</a>
     </nav>
 
+    <div class="search-panel">
+        <form class="search-form" action="{% url 'posts:post_search_view' %}" method="get">
+            <input type="search" class="search-input" placeholder="Search..." name="q">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
     <main>
 
     {% block content %}

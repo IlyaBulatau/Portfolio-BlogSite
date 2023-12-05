@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block title %} Search {% endblock %}
+
+{% block content %}
+
+    {% if posts %}
+        {% for post in posts %}
+        <div class="blog-post">
+            <a style="text-decoration: none;" href="{% url 'posts:post_detail_view' post.slug %}">
+                <h2>{{ post.title }}</h2>
+            </a>
+            <div class="tags">
+                <span>{{ post.tag.name }}</span>
+            </div>
+            <p>{% trans 'Views' %} {{ post.views.all|length }}</p>
+            <p>{% trans 'Published on' %}: <span>{{ post.created_on|date }}</span></p>
+            
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Post Image" width="500">
+            {% endif %}
+            <hr class="line-above-content">
+            <p> {{ post.headline|safe }}</p>
+        </div>
+        {% endfor %}
+        
+    
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="{{ request.path }}?page=1" class="pagination-btn">{% trans 'First' %}</a>
+            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}]" class="pagination-btn">← {% trans 'Previous' %}</a>
+            {% endif %}
+    
+            <div class="current-page">{% trans 'Page' %} <span id="currentPage">{{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span></div>
+    
+            {% if page_obj.has_next %}
+            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="pagination-btn">{% trans 'Next' %} →</a>
+            <a href="{{ request.path }}?page={{ page_obj.paginator.num_pages }}" class="pagination-btn">{% trans 'Last' %}</a>
+            {% endif %}
+        </div>
+
+    {% else %}
+        <h1>No result</h1>
+    {% endif %}
+{% endblock %}

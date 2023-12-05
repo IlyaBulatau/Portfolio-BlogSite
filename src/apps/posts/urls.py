@@ -7,6 +7,7 @@ from . import views
 app_name = "posts"
 
 urlpatterns = [
+    path("search/", views.PostSearchView.as_view(), name="post_search_view"),
     path("new/", views.PostCreateView.as_view(), name="post_create_view"),
     path(
         "<slug:slug>/",
