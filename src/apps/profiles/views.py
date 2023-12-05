@@ -6,7 +6,7 @@ from apps.users.mixins import LoginPermissionMixin
 from .forms import UserUpdateForm, UserSocialNetworkFormSet
 from apps.users.models import User
 from .models import SocialNetwork
-from apps.users.mixins import UpdatePermissionMixin
+from apps.users.mixins import OwnerPermissionMixin
 
 
 class ProfileDetailView(LoginPermissionMixin, DetailView):
@@ -15,7 +15,7 @@ class ProfileDetailView(LoginPermissionMixin, DetailView):
     context_object_name = "user_obj"
 
 
-class ProfileUpdateView(LoginPermissionMixin, UpdatePermissionMixin, UpdateView):
+class ProfileUpdateView(LoginPermissionMixin, OwnerPermissionMixin, UpdateView):
     model = User
     template_name = "profiles/profile_update.html"
     form_class = UserUpdateForm

@@ -5,7 +5,7 @@ from django.db.models import Model, ForeignKey
 from .models import User
 
 
-class UpdatePermissionMixin(AccessMixin):
+class OwnerPermissionMixin(AccessMixin):
     error_message_403 = "You doesn't have permissions for the operation"
 
     def get_permission_denied_message(self):

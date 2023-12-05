@@ -6,7 +6,7 @@ from django.db.models import QuerySet
 
 from .models import Post, IPView, Tag
 from .forms import PostUpdateForm, PostCreateForm
-from apps.users.mixins import UpdatePermissionMixin, LoginPermissionMixin
+from apps.users.mixins import OwnerPermissionMixin, LoginPermissionMixin
 from apps.users.models import User
 
 
@@ -84,7 +84,7 @@ class PostDetailView(generic.DetailView):
         return ip_adress
 
 
-class PostUpdateView(LoginPermissionMixin, UpdatePermissionMixin, generic.UpdateView):
+class PostUpdateView(LoginPermissionMixin, OwnerPermissionMixin, generic.UpdateView):
     model = Post
     context_object_name = "post"
     form_class = PostUpdateForm
