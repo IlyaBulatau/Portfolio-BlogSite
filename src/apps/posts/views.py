@@ -1,8 +1,10 @@
+from typing import Any
+from django.db import models
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse_lazy
-from django.db.models import QuerySet, Q
+from django.db.models import QuerySet, Q, Prefetch
 from django.contrib.postgres.search import (
     SearchVector,
     SearchQuery,
@@ -43,7 +45,6 @@ class PostUserListView(generic.ListView):
     template_name = "core/index.html"
     paginate_by = 5
     context_object_name = "posts"
-    ordering = ["-created_on"]
 
     def get_queryset(self) -> QuerySet:
         if self.request.method == "GET":
@@ -58,8 +59,14 @@ class PostUserListView(generic.ListView):
                 if current_user.slug != user_slug
                 else Q(author__slug=user_slug)
             )
+            
             # get all posts by the slug
-            queryset: QuerySet = self.model.objects.filter(query_filter).all()
+            queryset: QuerySet = (
+                self.model.objects
+                .filter(query_filter)
+                .select_related("tag")
+                .prefetch_related("views")
+                .order_by("-created_on"))
 
         return queryset
 
@@ -69,20 +76,40 @@ class PostDetailView(generic.DetailView):
     context_object_name = "post"
     template_name = "posts/post_detail.html"
 
+    def get_queryset(self) -> Post:
+        post_slug: str = self.kwargs.get(self.slug_field)
+        self.client_address: str = self._get_client_ip_address(self.request)
+
+        self.object: Post = (
+            Post.objects
+            .filter(slug=post_slug)
+            .select_related("author")
+            .prefetch_related(
+                Prefetch(
+                    lookup="views",
+                    queryset=IPView.objects.filter(address=self.client_address),
+                    to_attr="view"
+                    ),
+                )
+            .first()
+            )
+        
+        return self.object
+
+    def get_object(self, queryset: QuerySet | None = ...) -> Post:
+        return self.get_queryset()
+
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         """
         Add counting views of post
         """
-        client_ip_adress: str = self._get_client_ip_address(request)
-
-        # add new ip address if not exists
-        ipview_obj: IPView = IPView.objects.get_or_create(address=client_ip_adress)[0]
-        post_obj: Post = self.get_object()
-
+        response = super().get(request, *args, **kwargs)    
+        
         # connect posts with ip address in database
-        ipview_obj.posts.add(post_obj)
-
-        return super().get(request, *args, **kwargs)
+        if not self.object.view:
+            ip_view = IPView.objects.get_or_create(address=self.client_address)[0]
+            self.object.views.add(ip_view)
+        return response
 
     def _get_client_ip_address(self, request: HttpRequest) -> str:
         x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
@@ -125,6 +152,8 @@ class PostSearchView(generic.ListView):
             Post.objects.annotate(search=search_vector, rank=search_rank)
             .annotate(headline=search_headline)
             .filter(search=search_query, is_show=True)
+            .select_related("tag")
+            .prefetch_related("views")
             .order_by("-rank")
         )
 
