@@ -59,14 +59,14 @@ class PostUserListView(generic.ListView):
                 if current_user.slug != user_slug
                 else Q(author__slug=user_slug)
             )
-            
+
             # get all posts by the slug
             queryset: QuerySet = (
-                self.model.objects
-                .filter(query_filter)
+                self.model.objects.filter(query_filter)
                 .select_related("tag")
                 .prefetch_related("views")
-                .order_by("-created_on"))
+                .order_by("-created_on")
+            )
 
         return queryset
 
@@ -81,19 +81,18 @@ class PostDetailView(generic.DetailView):
         self.client_address: str = self._get_client_ip_address(self.request)
 
         self.object: Post = (
-            Post.objects
-            .filter(slug=post_slug)
+            Post.objects.filter(slug=post_slug)
             .select_related("author")
             .prefetch_related(
                 Prefetch(
                     lookup="views",
                     queryset=IPView.objects.filter(address=self.client_address),
-                    to_attr="view"
-                    ),
-                )
-            .first()
+                    to_attr="view",
+                ),
             )
-        
+            .first()
+        )
+
         return self.object
 
     def get_object(self, queryset: QuerySet | None = ...) -> Post:
@@ -103,8 +102,8 @@ class PostDetailView(generic.DetailView):
         """
         Add counting views of post
         """
-        response = super().get(request, *args, **kwargs)    
-        
+        response = super().get(request, *args, **kwargs)
+
         # connect posts with ip address in database
         if not self.object.view:
             ip_view = IPView.objects.get_or_create(address=self.client_address)[0]
@@ -169,4 +168,3 @@ class PostDeleteView(LoginPermissionMixin, OwnerPermissionMixin, generic.DeleteV
     def get_queryset(self) -> QuerySet:
         post_slug: str = self.kwargs.get(self.slug_field)
         return Post.objects.filter(slug=post_slug).select_related("author")
-        

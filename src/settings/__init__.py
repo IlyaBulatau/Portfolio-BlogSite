@@ -1,9 +1,7 @@
-# TODO: add deleteview to posts
-
 # TODO: write handle database erro and all 500 error
 # TODO: write templates to error page
 
-# TODO: autocomplete searhch text
+# TODO: add autocomplete to search text
 
 # TODO: rewrite django-allauth templates to custom
 

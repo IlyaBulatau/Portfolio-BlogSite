@@ -10,11 +10,10 @@ class HomePageView(generic.ListView):
 
     model = Post
     queryset = (
-        Post.objects
-        .filter(is_show=True)
+        Post.objects.filter(is_show=True)
         .select_related("tag")
         .prefetch_related("views")
-        )
+    )
     template_name = "core/index.html"
     paginate_by = 5
     context_object_name = "posts"
