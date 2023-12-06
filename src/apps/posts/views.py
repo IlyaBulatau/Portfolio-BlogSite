@@ -158,5 +158,15 @@ class PostSearchView(generic.ListView):
         )
 
 
-class PostDeleteView(generic.DeleteView):
-    ...
+class PostDeleteView(LoginPermissionMixin, OwnerPermissionMixin, generic.DeleteView):
+    model = Post
+    template_name = "posts/post_delete.html"
+
+    def get_success_url(self) -> str:
+        post: Post = self.object
+        return reverse_lazy("posts:post_user_view", args=(post.author.slug,))
+
+    def get_queryset(self) -> QuerySet:
+        post_slug: str = self.kwargs.get(self.slug_field)
+        return Post.objects.filter(slug=post_slug).select_related("author")
+        

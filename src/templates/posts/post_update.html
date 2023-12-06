@@ -5,6 +5,25 @@
 
 
 {% block content %}
+<button type="submit" id="deleteButton" onclick="showConfirmationModal('{{ post.slug }}')">{% trans 'Delete the post' %}</button>
+
+<!-- <form action="{% url 'posts:post_delete_view' post.slug %}" method="post">
+    {% csrf_token %}
+</form> -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to delete this post?</p>
+        <div class="modal-buttons">
+            <form action="{% url 'posts:post_delete_view' post.slug %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="modal-btn modal-btn-confirm" id="confirmButton">Confirm</button>
+                <button type="reset" class="modal-btn modal-btn-close" id="cancelButton">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- <a class="update-button-post" style="right: -600px;" href="{% url 'posts:post_delete_view' post.slug %}">{% trans 'Delete the post' %}</a> -->    
     <h1>You post</h1>
     <h2>Title: {{ post.title }}</h2>
     <form action="" method="post">
@@ -14,5 +33,32 @@
         <button type="submit">Submit</button>
 
     </form>
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+            var deleteButton = document.getElementById('deleteButton');
+            var confirmButton = document.getElementById('confirmButton');
+            var cancelButton = document.getElementById('cancelButton');
+            var confirmationModal = document.getElementById('confirmationModal');
 
+            function showConfirmationModal() {
+                confirmationModal.style.display = 'flex';
+            }
+
+            function closeConfirmationModal() {
+                confirmationModal.style.display = 'none';
+            }
+
+            function deleteMessage() {
+                // Implement your delete message logic here
+                console.log('Message deleted!');
+
+                // Redirect to a new page after deletion
+            }
+
+            // Attach event listeners
+            deleteButton.addEventListener('click', showConfirmationModal);
+            confirmButton.addEventListener('click', deleteMessage);
+            cancelButton.addEventListener('click', closeConfirmationModal);
+        });
+</script>
 {% endblock %}

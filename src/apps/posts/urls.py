@@ -13,10 +13,15 @@ urlpatterns = [
         "<slug:slug>/",
         include(
             [
-                path("", views.PostDetailView.as_view(), name="post_detail_view"),
+                path(
+                    "", views.PostDetailView.as_view(), name="post_detail_view"
+                    ),
                 path(
                     "update/", views.PostUpdateView.as_view(), name="post_update_view"
                 ),
+                path(
+                    "delete/", views.PostDeleteView.as_view(), name="post_delete_view"
+                    ),
             ]
         ),
     ),
