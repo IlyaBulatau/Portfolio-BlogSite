@@ -1,6 +1,9 @@
+from typing import Any
+from django.db import models
 from django.http import HttpResponse
 from django.views.generic import DetailView, UpdateView
 from django.urls import reverse_lazy
+from django.db.models import QuerySet
 
 from apps.users.mixins import LoginPermissionMixin
 from .forms import UserUpdateForm, UserSocialNetworkFormSet
@@ -13,6 +16,11 @@ class ProfileDetailView(LoginPermissionMixin, DetailView):
     model = User
     template_name = "profiles/profile.html"
     context_object_name = "user_obj"
+
+    def get_queryset(self) -> QuerySet:
+        user_slug: str = self.kwargs.get(self.slug_field)
+        user: User = User.objects.filter(slug=user_slug).prefetch_related("posts", "networks")
+        return user
 
 
 class ProfileUpdateView(LoginPermissionMixin, OwnerPermissionMixin, UpdateView):

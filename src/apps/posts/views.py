@@ -1,5 +1,3 @@
-from typing import Any
-from django.db import models
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic

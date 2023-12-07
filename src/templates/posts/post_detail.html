@@ -14,7 +14,7 @@
             <h2 class="post-title">{{ post.title }}</h2>
             <div class="post-metadata">
                 <span>{% trans 'Author' %}: <a href="{% url 'profiles:profile_detail_view' post.author.slug %}" class="author-link">{{ post.author.username }}</a></span>
-                <span>{% trans 'Views' %}: {{ post.views.all|length }}</span>
+                <span>{% trans 'Views' %}: {{ post.view|length }}</span>
             </div>
         </div>
     </div>

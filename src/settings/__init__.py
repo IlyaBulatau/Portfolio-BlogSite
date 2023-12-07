@@ -5,6 +5,8 @@
 
 # TODO: rewrite django-allauth templates to custom
 
+# TODO: add ability change password
+
 # TODO: write comment and like system
 
 # TODO: add favorites posts and subscriptions
