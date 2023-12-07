@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
+
 {% load socialaccount %}
+
 {% load i18n %}
 
 {% block title %} {% trans 'SignUp Page' %} {% endblock %}
@@ -25,7 +27,8 @@
 <br>
 
 <div>
-    <a href="{% provider_login_url 'github' %}">GitHub</a>
-    <a href="{% provider_login_url 'google' %}">Google</a>
+    {% for provider in social %}
+        <a href="{% provider_login_url provider.provider %}">{{ provider.name }}</a>
+    {% endfor %}
 </div>
 {% endblock %}
