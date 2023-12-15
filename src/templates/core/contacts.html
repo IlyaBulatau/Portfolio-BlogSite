@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block title %} Contacts {% endblock %}
+
+{% block content %}
+
+<div class="contact-container">
+    <h1>{% trans 'Contact Information' %}</h1>
+    <p><strong>{% trans 'Name' %}:</strong> {{ name }}</p>
+    <p><strong>{% trans 'About' %}:</strong> {{ about }}</p>
+    <p><strong>Email:</strong><a class="email-con" href="mailto:ilyabulatau@gmail.com">ilyabulatau@gmail.com</a> </p>
+    <p><strong>{% trans 'Location' %}:</strong> There</p>
+    <strong> {% trans 'Social Media' %}</strong>
+    <p>
+        {% for social in socials %}
+            <a href="{{ social.link }}"><img src="{{ social.image }}" alt=""></a>
+        {% endfor %}
+    </p>
+    <p><a class="a-con" href="{{ CV }}" download><strong>{% trans 'Download CV' %}</strong></a></p>
+{% endblock %}
