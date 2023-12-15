@@ -4,3 +4,5 @@ __pycache__/
 !.env.example
 media/
 ckeditor/
+tasks.txt
+files/
