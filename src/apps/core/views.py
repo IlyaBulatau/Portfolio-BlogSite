@@ -52,5 +52,6 @@ class ContactPageView(generic.TemplateView):
                 "link": "https://github.com/IlyaBulatau",
                 "image": "https://img.shields.io/badge/GitHub--blue?labelColor=green"
             },
-        ]
+        ],
+        "apiKey": settings.YANDEX_API_KEY
     }
