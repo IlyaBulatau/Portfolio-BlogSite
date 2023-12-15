@@ -25,8 +25,7 @@
     <nav>
         <a href="{% url 'core:index_view' %}">{% trans 'Home' %}</a>
         <a href="{% url 'posts:post_create_view' %}">{% trans 'New Acticle' %}</a>
-        <a href="#">{% trans 'About' %}</a>
-        <a href="#">{% trans 'Contact' %}</a>
+        <a href="{% url 'core:contacts_view' %}">{% trans 'Contact' %}</a>
     </nav>
 
     <div class="search-panel">
