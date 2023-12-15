@@ -377,3 +377,7 @@ CKEDITOR_CONFIGS = {
         ),
     }
 }
+
+# other
+RESUME_FILE = "Resume_Ilya_Bulatau.pdf"
+RESUME_PATH = STATIC_URL + "files/" + RESUME_FILE
