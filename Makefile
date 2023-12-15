@@ -21,7 +21,7 @@ stop:
 delete:
 	docker rm $$(docker ps -a -q)
 
-rebuld:
+rebuild:
 	make build
 	make run
 
