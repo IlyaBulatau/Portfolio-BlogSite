@@ -43,6 +43,8 @@ LOGIN_URL = "/users/login/"
 
 AUTH_USER_MODEL = "users.User"
 
+YANDEX_API_KEY = ENV("YANDEX_API_KEY")
+
 
 # Set up debug toolbar for docker
 if DEBUG:
@@ -381,4 +383,3 @@ CKEDITOR_CONFIGS = {
 # other
 RESUME_FILE = "Resume_Ilya_Bulatau.pdf"
 RESUME_PATH = STATIC_URL + "files/" + RESUME_FILE
-YANDEX_API_KEY = ENV("YANDEX_API_KEY")

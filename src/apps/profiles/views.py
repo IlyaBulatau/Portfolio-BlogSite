@@ -19,7 +19,9 @@ class ProfileDetailView(LoginPermissionMixin, DetailView):
 
     def get_queryset(self) -> QuerySet:
         user_slug: str = self.kwargs.get(self.slug_field)
-        user: User = User.objects.filter(slug=user_slug).prefetch_related("posts", "networks")
+        user: User = User.objects.filter(slug=user_slug).prefetch_related(
+            "posts", "networks"
+        )
         return user
 
 
