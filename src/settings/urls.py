@@ -30,11 +30,9 @@ urlpatterns = [
     path("users/", include("apps.users.urls")),
     path("profiles/", include("apps.profiles.urls")),
     path("posts/", include("apps.posts.urls")),
-
-    path("users/oauth/", include("allauth.urls")),
+    
     path("__debug__/", include("debug_toolbar.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
