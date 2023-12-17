@@ -16,10 +16,10 @@
         <h1>{% trans 'Blog' %}</h1>
         {% if user.is_authenticated %}
         <a href="{% url 'profiles:profile_detail_view' user.slug %}">{% trans 'Profile' %}</a>
-        <a href="{% url 'users:logout_view' %}">{% trans 'Logout' %}</a>
+        <a href="{% url 'logout_view' %}">{% trans 'Logout' %}</a>
         {% else %}
-        <a href="{% url 'users:signup_view' %}">{% trans 'SignUp' %}</a>
-        <a href="{% url 'users:login_view' %}">{% trans 'LogIn' %}</a>
+        <a href="{% url 'signup_view' %}">{% trans 'SignUp' %}</a>
+        <a href="{% url 'login_view' %}">{% trans 'LogIn' %}</a>
         {% endif %}
 
     </header>    

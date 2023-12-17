@@ -14,7 +14,7 @@ class UserSingUpView(CreateView):
     extra_context = {"social": SocialApp.objects.all()}
     template_name = "users/signup.html"
     form_class = forms.UserSignUpForm
-    success_url = reverse_lazy("users:login_view")
+    success_url = reverse_lazy("login_view")
 
 
 class UserLogInView(LoginView):
@@ -27,4 +27,4 @@ class UserLogInView(LoginView):
 
 class UserLogoutView(LoginPermissionMixin, LogoutView):
     template_name = "users/logout.html"
-    next_page = reverse_lazy("users:login_view")
+    next_page = reverse_lazy("login_view")
