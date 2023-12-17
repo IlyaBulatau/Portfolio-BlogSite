@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %} Contacts {% endblock %}
+{% block title %} {% trans 'Contacts' %} {% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
     <h1>{% trans 'Contact Information' %}</h1>
     <p><strong>{% trans 'Name' %}:</strong> {{ name }}</p>
     <p><strong>{% trans 'About' %}:</strong> {{ about }}</p>
-    <p><strong>Email:</strong><a class="email-con" href="mailto:ilyabulatau@gmail.com">ilyabulatau@gmail.com</a> </p>
+    <p><strong>{% trans 'Email' %}:</strong><a class="email-con" href="mailto:ilyabulatau@gmail.com">ilyabulatau@gmail.com</a> </p>
     <p>
         <strong>{% trans 'Location' %}:</strong> 
         <div id="yandex-map" style="width: 600px; height: 400px"></div>

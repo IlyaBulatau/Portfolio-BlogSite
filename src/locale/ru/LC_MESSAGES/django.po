@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 11:58+0000\n"
+"POT-Creation-Date: 2023-12-17 06:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,20 +19,67 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/apps/posts/admin.py:32
+#: src/apps/core/views.py:32
+msgid "Ilya Bulatau"
+msgstr "Илья Булатов"
+
+#: src/apps/core/views.py:33
+msgid ""
+"\n"
+"            Hi, I'm a Python developer with 2 years of experience. \n"
+"            I designed this site as my portfolio. \n"
+"            On this site you can write and publish your articles, \n"
+"            read articles written by other people. \n"
+"            You can also update your profile. \n"
+"            On this page you will find information on how to contact me.\n"
+"            "
+msgstr ""
+"\n"
+"           Привет, я разработчик Python с двухлетним опытом работы. \n"
+"           Я разработал этот сайт как свое портфолио. \n"
+"           На этом сайте вы можете писать и публиковать свои статьи,\n"
+"           читайте статьи, написанные другими людьми. \n"
+"           Вы также можете обновить свой профиль. \n"
+"           На этой странице вы найдете информацию о том, как со мной "
+"связаться.\n"
+"           "
+
+#: src/apps/posts/admin.py:42 src/apps/posts/forms.py:37
 msgid "Tag"
 msgstr "Тег"
 
-#: src/apps/profiles/forms.py:16 src/apps/users/forms.py:10
+#: src/apps/posts/forms.py:13 src/apps/posts/forms.py:32
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Контент"
+
+#: src/apps/posts/forms.py:17
+msgid "Show"
+msgstr "Показать"
+
+#: src/apps/posts/forms.py:26
+msgid "Title"
+msgstr "Заголовок"
+
+#: src/apps/posts/forms.py:36
+msgid "Image"
+msgstr "Изображение"
+
+#: src/apps/profiles/forms.py:15 src/apps/users/forms.py:11
 #: src/templates/profiles/profile.html:16
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: src/apps/profiles/forms.py:22
+#: src/apps/profiles/forms.py:21
 msgid "Phone"
 msgstr "Телефон"
 
-#: src/apps/users/admin.py:34
+#: src/apps/profiles/forms.py:25
+msgid "Avatar"
+msgstr "Аватар"
+
+#: src/apps/users/admin.py:33
 msgid "Register info"
 msgstr "Данные для процесса регистрации"
 
@@ -40,59 +87,61 @@ msgstr "Данные для процесса регистрации"
 msgid "Personal info"
 msgstr "Персональные данные"
 
-#: src/apps/users/admin.py:37
+#: src/apps/users/admin.py:39
 msgid "Permissions"
 msgstr "Разрешения"
 
-#: src/apps/users/admin.py:48
+#: src/apps/users/admin.py:50
 msgid "Dates"
 msgstr "Данные"
 
-#: src/apps/users/admin.py:53
+#: src/apps/users/admin.py:55
 #, fuzzy
 #| msgid "Required."
 msgid "Requirement"
 msgstr "Обязательно"
 
-#: src/apps/users/admin.py:60
+#: src/apps/users/admin.py:62
 msgid "Additionaly"
 msgstr "Дополнительно"
 
-#: src/apps/users/forms.py:11
+#: src/apps/users/forms.py:15 src/templates/core/contacts.html:13
 msgid "Email"
-msgstr "Email"
+msgstr "Почта"
 
-#: src/apps/users/models.py:16
+#: src/apps/users/models.py:15
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем уже существует"
 
-#: src/apps/users/models.py:17
+#: src/apps/users/models.py:16
 msgid "There is no user with this username"
 msgstr "Нету пользователя с таким именем"
 
-#: src/apps/users/models.py:23
+#: src/apps/users/models.py:22
 msgid "Required."
 msgstr "Обязательно"
 
-#: src/apps/users/models.py:23
+#: src/apps/users/models.py:24
 msgid "characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr "символов или меньше. Только буквы, цифры и @/./+/-/_."
 
-#: src/apps/users/models.py:30
+#: src/apps/users/models.py:34
 msgid "Enter a valid email address"
 msgstr "Введите корректный email"
 
-#: src/settings/settings.py:138
+#: src/settings/settings.py:144
 msgid "English"
 msgstr "Английский"
 
-#: src/settings/settings.py:139
+#: src/settings/settings.py:145
 msgid "Russian"
 msgstr "Русский"
 
 #: src/templates/base/base.html:15
-msgid "Your Blog"
-msgstr "Ваш блог"
+#, fuzzy
+#| msgid "Your Blog"
+msgid "Blog"
+msgstr "Блог"
 
 #: src/templates/base/base.html:17 src/templates/profiles/profile.html:4
 msgid "Profile"
@@ -102,111 +151,166 @@ msgstr "Профиль"
 msgid "Logout"
 msgstr "Выйти"
 
-#: src/templates/base/base.html:20 src/templates/users/login.html:23
+#: src/templates/base/base.html:20 src/templates/users/login.html:24
 #, fuzzy
 #| msgid "Sign Up"
 msgid "SignUp"
 msgstr "Зарегестрироваться"
 
-#: src/templates/base/base.html:21 src/templates/users/signup.html:23
+#: src/templates/base/base.html:21 src/templates/users/signup.html:25
 #, fuzzy
 #| msgid "LogIn Page"
 msgid "LogIn"
 msgstr "Страница Авторизации"
 
-#: src/templates/base/base.html:26 src/templates/users/login.html:9
-#: src/templates/users/signup.html:8
+#: src/templates/base/base.html:26 src/templates/users/login.html:10
+#: src/templates/users/signup.html:10
 msgid "Home"
 msgstr "На главную"
 
 #: src/templates/base/base.html:27
-msgid "Categories"
-msgstr "Категории"
+msgid "New Acticle"
+msgstr "Добавить статью"
 
 #: src/templates/base/base.html:28
-msgid "About"
-msgstr "О сайте"
-
-#: src/templates/base/base.html:29
 msgid "Contact"
 msgstr "Контакты"
 
-#: src/templates/core/index.html:15 src/templates/posts/post_detail.html:15
-msgid "Views"
-msgstr "Просмотры"
+#: src/templates/base/base.html:34 src/templates/posts/post_search.html:4
+msgid "Search"
+msgstr "Поиск"
 
-#: src/templates/core/index.html:16
-msgid "Published on"
-msgstr "Дата публикации"
-
-#: src/templates/core/index.html:29
-msgid "First"
-msgstr "Начало"
-
-#: src/templates/core/index.html:30
-msgid "Previous"
-msgstr "Преидущая"
-
-#: src/templates/core/index.html:33
-msgid "Page"
-msgstr "Страница"
-
-#: src/templates/core/index.html:33
-msgid "of"
-msgstr "из"
-
-#: src/templates/core/index.html:36
-msgid "Next"
-msgstr "Следующая"
-
-#: src/templates/core/index.html:37
-msgid "Last"
-msgstr "Конец"
-
-#: src/templates/posts/post_detail.html:9
-#: src/templates/profiles/profile.html:17
-#: src/templates/profiles/profile_update.html:4
-msgid "Update"
-msgstr "Обновить"
-
-#: src/templates/posts/post_detail.html:14
-msgid "Author"
-msgstr "Автор"
-
-#: src/templates/profiles/profile.html:18
-msgid "Blogs"
-msgstr ""
-
-#: src/templates/profiles/profile.html:29
+#: src/templates/core/contacts.html:5 src/templates/profiles/profile.html:31
 #, fuzzy
 #| msgid "Contact"
 msgid "Contacts"
 msgstr "Контакты"
 
-#: src/templates/profiles/profile.html:40
+#: src/templates/core/contacts.html:10
+msgid "Contact Information"
+msgstr "Контактная Информация"
+
+#: src/templates/core/contacts.html:11
+msgid "Name"
+msgstr "Имя"
+
+#: src/templates/core/contacts.html:12
+msgid "About"
+msgstr "О сайте"
+
+#: src/templates/core/contacts.html:15
+msgid "Location"
+msgstr "Место положение"
+
+#: src/templates/core/contacts.html:19
+msgid "Social Media"
+msgstr "Социальные сети"
+
+#: src/templates/core/contacts.html:25
+msgid "Download CV"
+msgstr "Скачать CV"
+
+#: src/templates/core/index.html:4
+msgid "Main"
+msgstr "Главная"
+
+#: src/templates/core/index.html:15 src/templates/posts/post_detail.html:17
+#: src/templates/posts/post_search.html:17
+msgid "Views"
+msgstr "Просмотры"
+
+#: src/templates/core/index.html:16 src/templates/posts/post_search.html:18
+msgid "Published on"
+msgstr "Дата публикации"
+
+#: src/templates/core/index.html:29 src/templates/posts/post_search.html:31
+msgid "First"
+msgstr "Начало"
+
+#: src/templates/core/index.html:30 src/templates/posts/post_search.html:32
+msgid "Previous"
+msgstr "Преидущая"
+
+#: src/templates/core/index.html:33 src/templates/posts/post_search.html:35
+msgid "Page"
+msgstr "Страница"
+
+#: src/templates/core/index.html:33 src/templates/posts/post_search.html:35
+msgid "of"
+msgstr "из"
+
+#: src/templates/core/index.html:36 src/templates/posts/post_search.html:38
+msgid "Next"
+msgstr "Следующая"
+
+#: src/templates/core/index.html:37 src/templates/posts/post_search.html:39
+msgid "Last"
+msgstr "Конец"
+
+#: src/templates/posts/post_create.html:4
+msgid "New Post"
+msgstr "Новая статья"
+
+#: src/templates/posts/post_create.html:11
+#: src/templates/profiles/profile_update.html:14
+msgid "Submit"
+msgstr "Выполнить"
+
+#: src/templates/posts/post_detail.html:4
+msgid "Post"
+msgstr "Статья"
+
+#: src/templates/posts/post_detail.html:10
+#: src/templates/posts/post_update.html:4
+#: src/templates/profiles/profile.html:18
+#: src/templates/profiles/profile_update.html:4
+msgid "Update"
+msgstr "Обновить"
+
+#: src/templates/posts/post_detail.html:16
+msgid "Author"
+msgstr "Автор"
+
+#: src/templates/posts/post_update.html:8
+#: src/templates/posts/post_update.html:26
+msgid "Delete the post"
+msgstr "Удалить пост"
+
+#: src/templates/profiles/profile.html:21
+msgid "Acticles"
+msgstr "Статьи"
+
+#: src/templates/profiles/profile.html:42
 #, fuzzy
 #| msgid "About"
 msgid "About Me"
-msgstr "О сайте"
+msgstr "Обо мне"
 
-#: src/templates/users/login.html:6 src/templates/users/login.html:13
+#: src/templates/profiles/profile_update.html:15
+msgid "Cancel"
+msgstr "Отмена"
+
+#: src/templates/users/login.html:7 src/templates/users/login.html:14
 msgid "LogIn Page"
 msgstr "Страница Авторизации"
 
-#: src/templates/users/login.html:19
+#: src/templates/users/login.html:20
 msgid "Log In"
 msgstr "Войти"
 
-#: src/templates/users/signup.html:5
+#: src/templates/users/signup.html:7
 #, fuzzy
 #| msgid "LogIn Page"
 msgid "SignUp Page"
 msgstr "Страница Авторизации"
 
-#: src/templates/users/signup.html:12
+#: src/templates/users/signup.html:14
 msgid "Signin Process"
 msgstr "Страница Регистрации"
 
-#: src/templates/users/signup.html:18
+#: src/templates/users/signup.html:20
 msgid "Sign Up"
 msgstr "Зарегестрироваться"
+
+#~ msgid "Categories"
+#~ msgstr "Категории"
