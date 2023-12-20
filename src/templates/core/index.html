@@ -27,7 +27,7 @@
     <div class="pagination">
         {% if page_obj.has_previous %}
         <a href="{{ request.path }}?page=1" class="pagination-btn">{% trans 'First' %}</a>
-        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}]" class="pagination-btn">← {% trans 'Previous' %}</a>
+        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" class="pagination-btn">← {% trans 'Previous' %}</a>
         {% endif %}
 
         <div class="current-page">{% trans 'Page' %} <span id="currentPage">{{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}</span></div>
