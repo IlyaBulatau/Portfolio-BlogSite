@@ -29,9 +29,9 @@ ENV.read_env(path=ENV_PATH)
 # Application variables
 SECRET_KEY = ENV("SECRET_KEY")
 
-DEBUG = ENV("DEBUG")
+DEBUG = ENV("DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 ROOT_URLCONF = "settings.urls"
 
