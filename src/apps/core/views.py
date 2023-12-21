@@ -1,6 +1,7 @@
 from django.views import generic
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.shortcuts import render
 
 from apps.posts.models import Post
 
@@ -58,3 +59,32 @@ class ContactPageView(generic.TemplateView):
         ],
         "apiKey": settings.YANDEX_API_KEY,
     }
+
+
+def page_not_found(request, *args, **kwargs):
+    return render(
+        request=request, 
+        template_name="core/errors/404.html", 
+        status=404
+        )
+
+def permission_denied(request, *args, **kwargs):
+    return render(
+        request=request,
+        template_name="core/errors/403.html",
+        status=403
+    )
+
+def bad_request(request, *args, **kwargs):
+    return render(
+        request=request,
+        template_name="core/errors/400.html",
+        status=400
+    )
+
+def server_error(request, *args, **kwargs):
+    return render(
+        request=request,
+        template_name="core/errors/500.html",
+        status=500
+    )
