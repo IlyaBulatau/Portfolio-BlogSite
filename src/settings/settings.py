@@ -45,6 +45,10 @@ AUTH_USER_MODEL = "users.User"
 
 YANDEX_API_KEY = ENV("YANDEX_API_KEY")
 
+ADMIN_SITE_URL = ENV("ADMIN_SITE_URL", "admin")
+
+ADMIN_IP = ENV("ADMIN_IP")
+
 
 # Set up debug toolbar for docker
 if DEBUG:
@@ -100,6 +104,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "settings.middlewares.AdminPageMiddleware"
 ]
 
 
