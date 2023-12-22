@@ -104,7 +104,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "allauth.account.middleware.AccountMiddleware",
-    "settings.middlewares.AdminPageMiddleware"
+    "settings.middlewares.AdminPageMiddleware",
 ]
 
 
@@ -324,12 +324,14 @@ CKEDITOR_CONFIGS = {
                 ],
             },
             "/",
-            {"name": "links", "items": [
-                "Link", 
-                "Unlink", 
-                # "Anchor"
-                ]
-                },
+            {
+                "name": "links",
+                "items": [
+                    "Link",
+                    "Unlink",
+                    # "Anchor"
+                ],
+            },
             {
                 "name": "insert",
                 "items": [
@@ -343,7 +345,6 @@ CKEDITOR_CONFIGS = {
                     # "Iframe",
                 ],
             },
-            
             "/",
             {"name": "styles", "items": ["Styles", "Format", "Font", "FontSize"]},
             {"name": "colors", "items": ["TextColor", "BGColor"]},
@@ -359,11 +360,11 @@ CKEDITOR_CONFIGS = {
             #     ],
             # },
         ],
-        "toolbar": "YourCustomToolbarConfig",  # put selected toolbar config here
+        "toolbar": "YourCustomToolbarConfig",
         "toolbarGroups": [
             {"name": "document", "groups": ["mode", "document", "doctools"]}
         ],
-        "height": 291,
+        "height": 300,
         "width": "100%",
         "filebrowserWindowHeight": 725,
         "filebrowserWindowWidth": 940,
