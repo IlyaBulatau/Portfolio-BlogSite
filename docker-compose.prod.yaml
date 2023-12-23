@@ -41,7 +41,7 @@ services:
     build: ./deploy/nginx
     container_name: nginx
     ports:
-      - 1337:80
+      - 80:80
     volumes:
       - static_files:/home/admin/web/project/staticfiles/
     depends_on:
