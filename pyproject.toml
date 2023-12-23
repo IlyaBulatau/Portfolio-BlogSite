@@ -16,6 +16,7 @@ django-allauth = "^0.58.2"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "^7.2.0"}
 black = "^23.11.0"
 django-ckeditor = "^6.7.0"
+gunicorn = "^21.2.0"
 
 
 [build-system]
