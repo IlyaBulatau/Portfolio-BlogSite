@@ -4,6 +4,5 @@ __pycache__/
 .git*
 READ*
 .env.example
-Makefile
 .gitignore
 tasks.txt
