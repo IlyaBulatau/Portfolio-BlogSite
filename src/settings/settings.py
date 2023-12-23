@@ -134,15 +134,13 @@ TEMPLATES = [
 
 
 # Static files
-if DEBUG:
-    STATIC_URL = "/static/"
-    STATICFILES_DIRS = [BASE_DIR / "static/static/"]
-else:
-    STATIC_ROOT = BASE_DIR / "/static/"
-    STATICFILES_FINDERS = (
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    )
+STATIC_URL = "/static/"
+
+# if DEBUG:
+#     STATICFILES_DIRS = [BASE_DIR / "static/static/"]
+# else:
+STATIC_ROOT = BASE_DIR / "/static/"
+
 
 MEDIA_ROOT = BASE_DIR.as_posix() + "/static/media/"
 MEDIA_URL = MEDIA_ROOT
