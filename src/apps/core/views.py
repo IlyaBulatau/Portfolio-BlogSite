@@ -42,7 +42,6 @@ class ContactPageView(generic.TemplateView):
             On this page you will find information on how to contact me.
             """
         ),
-        "CV": settings.RESUME_PATH,
         "socials": [
             {
                 "link": "https://t.me/ilbltv",

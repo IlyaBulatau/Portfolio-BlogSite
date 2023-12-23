@@ -22,7 +22,7 @@
             <a href="{{ social.link }}"><img src="{{ social.image }}" alt=""></a>
         {% endfor %}
     </p>
-    <p><a class="a-con" href="{{ CV }}" download><strong>{% trans 'Download CV' %}</strong></a></p>
+    <p><a class="a-con" href="{% static 'files/Resume_Ilya_Bulatau.pdf' %}" download><strong>{% trans 'Download CV' %}</strong></a></p>
 <script src="https://api-maps.yandex.ru/v3/?apikey={{ apiKey }}&lang=ru_RU"></script>
 <script src="{% static 'js/common.js' %}"></script>
 <script src="{% static 'js/vanilla.js' %}"></script>
