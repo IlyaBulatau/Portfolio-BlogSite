@@ -3,7 +3,7 @@ services:
 
   postgres:
     image: postgres:14-alpine
-    container_name: postgres_db
+    container_name: postgres
     env_file:
       - './env/.env.prod'
     ports:
@@ -37,6 +37,7 @@ services:
   
   nginx:
     build: ./deploy/nginx
+    container_name: nginx
     ports:
       - 1337:80
     volumes:
