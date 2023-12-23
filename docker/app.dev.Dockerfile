@@ -14,6 +14,6 @@ RUN pip install --upgrade pip && \
     pip install poetry && \
     poetry install --no-root --no-directory
 
-RUN chmod 777 ./scripts/app-entrypoint.sh
+RUN chmod 777 ./scripts/app-dev-entrypoint.sh
 
 ENTRYPOINT [ "sh", "./scripts/app-dev-entrypoint.sh" ]

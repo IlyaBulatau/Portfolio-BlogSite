@@ -6,7 +6,9 @@ ENV PYTHONUNBUFFERED 1 \
 RUN apk update && \
     apk add musl-dev libpq-dev gcc gettext
 
-WORKDIR /home/code/app
+WORKDIR /home/project/app
+
+RUN mkdir /home/project/app/staticfiles
 
 COPY . .
 
@@ -14,6 +16,6 @@ RUN pip install --upgrade pip && \
     pip install poetry && \
     poetry install --no-root --no-directory
 
-RUN chmod 777 ./scripts/app-entrypoint.sh
+RUN chmod 777 ./scripts/app-prod-entrypoint.sh
 
 ENTRYPOINT [ "sh", "./scripts/app-prod-entrypoint.sh" ]

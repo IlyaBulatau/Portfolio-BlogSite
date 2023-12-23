@@ -3,9 +3,7 @@ __pycache__/
 .pytest*
 .git*
 READ*
-.env*
-!.env.prod
+.env.example
 Makefile
 .gitignore
-docker-compose.dev.yaml
-tasls.txt
+tasks.txt
