@@ -1,5 +1,8 @@
 #!/bin/sh
 export MODE='prod'
-export $(grep -v '^#' ./env/.env.dev | xargs)
+export PYTHONPATH=$(pwd)/src
 
-poetry run gunicorn src.settings.wsgi:application --bind 0.0.0.0:8000
+export $(grep -v '^#' ./env/.env.prod | xargs)
+
+poetry run python3 src/manage.py migrate
+poetry run gunicorn src.settings.wsgi --bind 0.0.0.0:8000
