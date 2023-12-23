@@ -33,7 +33,7 @@ DEBUG = ENV("DEBUG", False)
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+    ALLOWED_HOSTS = ["*"]
 
 ROOT_URLCONF = "settings.urls"
 
@@ -51,6 +51,7 @@ ADMIN_SITE_URL = ENV("ADMIN_SITE_URL", "admin")
 
 ADMIN_IP = ENV("ADMIN_IP")
 
+# CSRF_TRUSTED_ORIGINS = ["http://localhost:1337"]
 
 # Set up debug toolbar for docker
 if DEBUG:
