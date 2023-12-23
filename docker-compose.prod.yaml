@@ -27,6 +27,8 @@ services:
       dockerfile: ./docker/app.prod.Dockerfile
       context: .
     container_name: web
+    env_file:
+      - './env/.env.prod'
     ports:
     - "8000:8000"
     restart: always
