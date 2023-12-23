@@ -38,7 +38,7 @@ services:
 
   app:
     build:
-      dockerfile: docker/app.Dockerfile
+      dockerfile: docker/app.dev.Dockerfile
       context: .
     container_name: app
     ports:

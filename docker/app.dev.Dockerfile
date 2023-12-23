@@ -16,4 +16,4 @@ RUN pip install --upgrade pip && \
 
 RUN chmod 777 ./scripts/app-entrypoint.sh
 
-ENTRYPOINT [ "sh", "./scripts/app-entrypoint.sh" ]
+ENTRYPOINT [ "sh", "./scripts/app-dev-entrypoint.sh" ]
