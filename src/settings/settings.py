@@ -9,7 +9,7 @@ from environs import Env
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Set Up environments variables
+# Set Up file with environments variables
 MODE = os.getenv("MODE", ModeEnum.DEV.value)
 
 if MODE not in [
@@ -30,8 +30,10 @@ ENV.read_env(path=ENV_PATH)
 SECRET_KEY = ENV("SECRET_KEY")
 
 DEBUG = ENV("DEBUG", False)
-
-ALLOWED_HOSTS = ["*"]
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 ROOT_URLCONF = "settings.urls"
 
@@ -131,9 +133,15 @@ TEMPLATES = [
 
 
 # Static files
-STATIC_URL = "static/"
-
-STATICFILES_DIRS = [BASE_DIR / "static/static/"]
+if DEBUG:
+    STATIC_URL = "/static/"
+    STATICFILES_DIRS = [BASE_DIR / "static/static/"]
+else:
+    STATIC_ROOT = BASE_DIR / "/static/"
+    STATICFILES_FINDERS = (
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    )
 
 MEDIA_ROOT = BASE_DIR.as_posix() + "/static/media/"
 MEDIA_URL = MEDIA_ROOT
