@@ -27,8 +27,8 @@ services:
       dockerfile: ./docker/app.prod.Dockerfile
       context: .
     container_name: web
-    expose:
-    - 8000
+    ports:
+    - "8000:8000"
     restart: always
     volumes:
       - static_files:/home/admin/web/project/staticfiles
