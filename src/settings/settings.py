@@ -33,7 +33,7 @@ DEBUG = ENV("DEBUG", False)
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = ENV("ALLOWED_HOSTS").split(" ")
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 ROOT_URLCONF = "settings.urls"
 
