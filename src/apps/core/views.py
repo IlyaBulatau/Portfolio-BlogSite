@@ -71,6 +71,8 @@ def permission_denied(request, *args, **kwargs):
 def bad_request(request, *args, **kwargs):
     return render(request=request, template_name="core/errors/400.html", status=400)
 
+def csrf_failure(request, *args, **kwargs):
+    return render(request=request, template_name="core/errors/csrf.html", status=403)
 
 def server_error(request, *args, **kwargs):
     return render(request=request, template_name="core/errors/500.html", status=500)

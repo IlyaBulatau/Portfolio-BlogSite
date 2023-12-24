@@ -51,7 +51,10 @@ ADMIN_SITE_URL = ENV("ADMIN_SITE_URL", "admin")
 
 ADMIN_IP = ENV("ADMIN_IP")
 
-# CSRF_TRUSTED_ORIGINS = ["http://localhost:1337"]
+CSRF_FAILURE_VIEW = 'apps.core.views.csrf_failure'
+# CSRF_COOKIE_SECURE = True # 433 to True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Set up debug toolbar for docker
 if DEBUG:
@@ -136,10 +139,10 @@ TEMPLATES = [
 # Static files
 STATIC_URL = "/static/"
 
-# if DEBUG:
-#     STATICFILES_DIRS = [BASE_DIR / "static/static/"]
-# else:
-STATIC_ROOT = BASE_DIR / "/static/"
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / "static/static/"]
+else:
+    STATIC_ROOT = BASE_DIR / "/static/"
 
 
 MEDIA_ROOT = BASE_DIR.as_posix() + "/static/media/"
