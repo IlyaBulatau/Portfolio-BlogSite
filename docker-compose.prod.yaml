@@ -20,7 +20,7 @@ services:
       start_period: 10s
     restart: always
     volumes:
-      - postgres_db_data:/var/lib/postgresql/db/data
+      - postgres_data:/var/lib/postgresql/db/data
 
   web:
     build:
@@ -49,6 +49,6 @@ services:
       - web
 
 volumes:
-  postgres_db_data:
+  postgres_data:
   static:
   media:
