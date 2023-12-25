@@ -146,7 +146,7 @@ else:
 
 
 MEDIA_ROOT = BASE_DIR.as_posix() + "/static/media/"
-MEDIA_URL = ""
+MEDIA_URL = "/media/"
 
 
 # Internalization
