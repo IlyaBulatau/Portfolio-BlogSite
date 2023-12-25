@@ -41,7 +41,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - static:/home/admin/web/project/src/static
+      - static:/var/static
     depends_on:
       - web
 
