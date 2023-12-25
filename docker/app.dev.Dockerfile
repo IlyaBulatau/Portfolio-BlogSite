@@ -8,7 +8,7 @@ RUN apk update && \
 
 WORKDIR /home/code/app
 
-COPY . .
+COPY .. .
 
 RUN pip install --upgrade pip && \
     pip install poetry && \
