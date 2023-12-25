@@ -16,7 +16,7 @@ RUN pip install --upgrade pip && \
     pip install poetry && \
     poetry install --no-root --no-directory
 
-EXPOSE 80
+EXPOSE 8000
 
 RUN addgroup -S web && adduser -S admin -G web && \
     chown -R admin:web $HOME && \
