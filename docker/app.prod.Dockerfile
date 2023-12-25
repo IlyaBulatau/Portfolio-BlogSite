@@ -18,10 +18,6 @@ RUN pip install --upgrade pip && \
 
 EXPOSE 8000
 
-RUN addgroup -S web && adduser -S admin -G web && \
-    chown -R admin:web $HOME && \
-    chmod 755 $HOME
-
-USER admin
+RUN chmod +x ./scripts/app-prod-entrypoint.sh
 
 ENTRYPOINT [ "sh", "./scripts/app-prod-entrypoint.sh" ]

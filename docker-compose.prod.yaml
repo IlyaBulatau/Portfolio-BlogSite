@@ -31,7 +31,9 @@ services:
       - './env/.env.prod'
     restart: always
     volumes:
-      - static:/home/admin/web/project/src/static
+      - static:/home/admin/web/project/src/static/
+      - media:/home/admin/web/project/src/media/
+      - ./src:/home/admin/web/project/src/
     depends_on:
       - postgres
   
@@ -41,10 +43,12 @@ services:
     ports:
       - 80:80
     volumes:
-      - static:/var/static
+      - static:/var/static/static
+      - media:/var/static/media
     depends_on:
       - web
 
 volumes:
   postgres_db_data:
   static:
+  media:

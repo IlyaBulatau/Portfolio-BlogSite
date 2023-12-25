@@ -8,6 +8,7 @@
 <div class="profile">
     <div class="profile-header">
         {% if user_obj.avatar %}
+        {% static  user_obj.avatar.url%}
         <img src="{{ user_obj.avatar.url }}" alt="User Profile Picture" width="180" height="180">
         {% else %}
         <img src="{% static 'images/empty_avatar.png' %}" alt="User Profile Picture" width="180" height="180">
