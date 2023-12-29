@@ -41,11 +41,25 @@ services:
     container_name: server
     ports:
       - 80:80
+      - 443:443
     volumes:
       - static:/var/static/static
       - media:/var/static/media
+      - ./deploy/nginx:/etc/nginx/conf.d
+      - ./deploy/certbot/conf:/etc/letsencrypt
+      - ./deploy/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     depends_on:
       - app
+  
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:v1.17.0
+    restart: unless-stopped
+    entrypoint:  "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    volumes:
+      - ./deploy/certbot/conf:/etc/letsencrypt
+      - ./deploy/certbot/www:/var/www/certbot
 
 volumes:
   postgres_data:
