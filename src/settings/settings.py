@@ -52,8 +52,14 @@ ADMIN_SITE_URL = ENV("ADMIN_SITE_URL", "admin")
 ADMIN_IP = ENV("ADMIN_IP")
 
 CSRF_FAILURE_VIEW = 'apps.core.views.csrf_failure'
-# CSRF_COOKIE_SECURE = True # 433 to True
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_COOKIE_SECURE = True # 433 to True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_SSL_REDIRECT = True
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Set up debug toolbar for docker
