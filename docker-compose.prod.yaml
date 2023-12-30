@@ -45,7 +45,7 @@ services:
     volumes:
       - static:/var/static/static
       - media:/var/static/media
-      - ./deploy/nginx:/etc/nginx/conf.d
+      - ./deploy/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./deploy/certbot/conf:/etc/letsencrypt
       - ./deploy/certbot/www:/var/www/certbot
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
