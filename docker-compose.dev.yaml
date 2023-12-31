@@ -36,11 +36,11 @@ services:
     depends_on:
       - postgres_dev
 
-  app:
+  app_dev:
     build:
       dockerfile: docker/app.dev.Dockerfile
       context: .
-    container_name: app
+    container_name: app_dev
     ports:
       - '8001:8001'
     volumes:

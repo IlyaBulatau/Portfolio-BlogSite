@@ -1,4 +1,4 @@
-RUN = docker exec app poetry run 
+RUN = docker exec app_dev poetry run 
 
 build:
 	docker compose --env-file ./env/.env.dev -f docker-compose.dev.yaml build
