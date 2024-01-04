@@ -49,3 +49,9 @@ class TagAdminCustom(admin.ModelAdmin):
             },
         ),
     )
+
+@admin.register(IPView)
+class IPViewAdminCustom(admin.ModelAdmin):
+    list_display = (
+        "address",
+    )
